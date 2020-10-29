@@ -8,7 +8,7 @@ import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 ReactDOM.render(
-  //teste 2
+  //teste 2 333
   <BrowserRouter>
     <Switch>
       <Route path="/" exact={true} component={App} />
