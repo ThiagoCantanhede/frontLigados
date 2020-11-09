@@ -16,7 +16,7 @@ export default function App(props) {
                 </a>
               </li>
               <li>
-                <a href="">Vagasss</a>
+                <a href="">Vagas</a>
               </li>
               <li>
                 <a href="">Artigos</a>
