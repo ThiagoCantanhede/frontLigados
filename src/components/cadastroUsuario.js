@@ -1,10 +1,12 @@
 import React from 'react';
 import operacoes from '../services/LigadosService.js';
+
 export default function CadastroUsuario(props) {
   var nomeCompleto = '';
   var nomeUsuario = '';
   var email = '';
   var senha = '';
+  var tipo = '';
 
   const setNomeCompleto = (event) => {
     nomeCompleto = event.target.value;
@@ -21,12 +23,17 @@ export default function CadastroUsuario(props) {
     senha = event.target.value;
   };
 
+  const setTipo = (event) => {
+    tipo = event.target.value;
+  };
+
   const salvarUsuario = () => {
     var usuario = {
       nome: nomeCompleto,
       nomeDeUsuario: nomeUsuario,
       password: senha,
       email: email,
+      tipo: tipo,
     };
     console.log(usuario);
     operacoes.create(usuario);
@@ -39,7 +46,7 @@ export default function CadastroUsuario(props) {
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="nome"
+              id="nomeCompleto"
               type="text"
               onChange={setNomeCompleto}
               className="validate"
@@ -52,7 +59,7 @@ export default function CadastroUsuario(props) {
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="nome"
+              id="nomeUsuario"
               type="text"
               onChange={setNomeUsuario}
               className="validate"
@@ -65,7 +72,7 @@ export default function CadastroUsuario(props) {
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="nome"
+              id="email"
               type="text"
               onChange={setEmail}
               className="validate"
@@ -74,10 +81,23 @@ export default function CadastroUsuario(props) {
               E-mail
             </label>
           </div>
+
+          <div className="input-field col s4"></div>
+          <div className="input-field col s8">
+            <select className="browser-default" onChange={setTipo}>
+              <option value="" disabled selected>
+                Escolha o tipo do usuário
+              </option>
+              <option value="recrutador">Recrutador</option>
+              <option value="candidato">Candidato</option>
+            </select>
+            <label className="active"> Tipo de usuário</label>
+          </div>
+
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="nome"
+              id="senha"
               type="text"
               onChange={setSenha}
               className="validate"
