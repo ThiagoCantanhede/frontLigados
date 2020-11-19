@@ -1,5 +1,5 @@
 import React from 'react';
-import operacoes from '../services/LigadosService.js';
+import operacoes from '../services/UsuariosService.js';
 
 export default function CadastroUsuario(props) {
   var nomeCompleto = '';

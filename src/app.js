@@ -16,6 +16,11 @@ export default function App(props) {
                 </a>
               </li>
               <li>
+                <a>
+                  <Link to="/curriculo">Cadastrar currículo</Link>
+                </a>
+              </li>
+              <li>
                 <a href="">Vagas</a>
               </li>
               <li>
