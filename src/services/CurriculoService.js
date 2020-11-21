@@ -9,7 +9,7 @@ const get = (id) => {
 };
 
 const create = (data) => {
-  return http.post('/', data);
+  return http.post('/curriculo', data);
 };
 
 const update = (id, data) => {

@@ -1,10 +1,12 @@
 import React from 'react';
 import operacoes from '../services/CurriculoService.js';
+import { useHistory } from 'react-router-dom';
 
 export default function CadastroCurriculo(props) {
   var formacao = '';
   var competencias = '';
   var experienciaProfissional = '';
+  const history = useHistory();
 
   const setFormacao = (event) => {
     formacao = event.target.value;
@@ -15,6 +17,16 @@ export default function CadastroCurriculo(props) {
 
   const setExperienciaProfissional = (event) => {
     experienciaProfissional = event.target.value;
+  };
+
+  const salvarCurriculo = () => {
+    var curriculo = {
+      formacao: formacao,
+      competencias: competencias,
+      experienciaProfissional: experienciaProfissional,
+    };
+    operacoes.create(curriculo);
+    history.push('/');
   };
 
   return (
@@ -55,7 +67,9 @@ export default function CadastroCurriculo(props) {
         </div>
 
         <div className="input-field col s12">
-          <a className="waves-effect waves-light btn">Salvar</a>
+          <a className="waves-effect waves-light btn" onClick={salvarCurriculo}>
+            Salvar
+          </a>
         </div>
       </form>
     </div>

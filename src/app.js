@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CadastroUsuario from './components/cadastroUsuario';
+import CadastroCurriculo from './components/cadastroCurriculo';
 export default function App(props) {
   return (
     <div class="navbar-fixed">

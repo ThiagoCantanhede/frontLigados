@@ -1,5 +1,6 @@
 import React from 'react';
 import operacoes from '../services/UsuariosService.js';
+import { useHistory } from 'react-router-dom';
 
 export default function CadastroUsuario(props) {
   var nomeCompleto = '';
@@ -7,7 +8,7 @@ export default function CadastroUsuario(props) {
   var email = '';
   var senha = '';
   var tipo = '';
-
+  const history = useHistory();
   const setNomeCompleto = (event) => {
     nomeCompleto = event.target.value;
   };
@@ -35,8 +36,8 @@ export default function CadastroUsuario(props) {
       email: email,
       tipo: tipo,
     };
-    console.log(usuario);
     operacoes.create(usuario);
+    history.push('/');
   };
   return (
     <div className="row container">
