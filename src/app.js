@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function App(props) {
   return (
-    <div class="navbar-fixed">
-      <nav class="blue " role="navigation">
-        <div class="container">
+    <div className="navbar-fixed">
+      <nav className="blue " role="navigation">
+        <div className="container">
           <div className="nav-wrapper">
             <a href="#" className="brand-logo">
               Logo
@@ -22,7 +22,9 @@ export default function App(props) {
                 </a>
               </li>
               <li>
-                <Link to="/vaga">Cadastrar vaga</Link>
+                <a>
+                  <Link to="/vaga">Cadastrar vaga</Link>
+                </a>
               </li>
               <li>
                 <a href="">Artigos</a>

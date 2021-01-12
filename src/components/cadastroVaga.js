@@ -3,40 +3,49 @@ import operacoes from '../services/VagasService.js';
 import { useHistory } from 'react-router-dom';
 
 export default function CadastroVaga(props) {
-  var nomeCompleto = '';
-  var nomeUsuario = '';
-  var email = '';
-  var senha = '';
-  var tipo = '';
+  var titulo = '';
+  var descricao = '';
+  var competencias = '';
+  var rendimentos = '';
+  var beneficios = '';
+  var dataLimite = '';
+
   const history = useHistory();
-  const setNomeCompleto = (event) => {
-    nomeCompleto = event.target.value;
+  const setTitulo = (event) => {
+    titulo = event.target.value;
   };
-  const setNomeUsuario = (event) => {
-    nomeUsuario = event.target.value;
-  };
-
-  const setEmail = (event) => {
-    email = event.target.value;
+  const setDescricao = (event) => {
+    descricao = event.target.value;
   };
 
-  const setSenha = (event) => {
-    senha = event.target.value;
+  const setCompetencias = (event) => {
+    competencias = event.target.value;
   };
 
-  const setTipo = (event) => {
-    tipo = event.target.value;
+  const setRendimentos = (event) => {
+    rendimentos = event.target.value;
   };
 
-  const salvarUsuario = () => {
-    var usuario = {
-      nome: nomeCompleto,
-      nomeDeUsuario: nomeUsuario,
-      password: senha,
-      email: email,
-      tipo: tipo,
+  const setBeneficios = (event) => {
+    beneficios = event.target.value;
+  };
+
+  const setDataLimite = (event) => {
+    dataLimite = event.target.value;
+  };
+
+  const salvarVaga = () => {
+    var vaga = {
+      titulo: titulo,
+      competencias: competencias,
+      descricao: descricao,
+      rendimentos: rendimentos,
+      beneficios: beneficios,
+      dataLimiteCandidatura: dataLimite,
+      dataPublicacao: Date.now(),
+      usuarioId: 'Implementar',
     };
-    operacoes.create(usuario);
+    operacoes.create(vaga);
     history.push('/');
   };
   return (
@@ -47,69 +56,77 @@ export default function CadastroVaga(props) {
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="nomeCompleto"
+              id="titulo"
               type="text"
-              onChange={setNomeCompleto}
+              onChange={setTitulo}
               className="validate"
             ></input>
-            <label className="active" htmlFor="nome">
+            <label className="active" htmlFor="titulo">
               Título
             </label>
           </div>
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
-            <input
-              id="nomeUsuario"
-              type="text"
-              onChange={setNomeUsuario}
-              className="validate"
-            ></input>
-            <label className="active" htmlFor="nome">
-              Nome de usuário
+            <textarea
+              id="descricao"
+              onChange={setDescricao}
+              style={{ height: 7 + 'em' }}
+            ></textarea>
+            <label className="active" htmlFor="descricao">
+              Descrição da vaga
+            </label>
+          </div>
+
+          <div className="input-field col s4"></div>
+          <div className="input-field col s8">
+            <textarea
+              id="competencias"
+              onChange={setCompetencias}
+              style={{ height: 7 + 'em' }}
+            ></textarea>
+            <label className="active" htmlFor="competencias">
+              Requisitos da vaga
             </label>
           </div>
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="email"
+              id="rendimentos"
               type="text"
-              onChange={setEmail}
+              onChange={setRendimentos}
               className="validate"
             ></input>
-            <label className="active" htmlFor="nome">
-              E-mail
-            </label>
+            <label className="active"> Rendimentos</label>
           </div>
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
-            <select className="browser-default" onChange={setTipo}>
-              <option value="" disabled selected>
-                Escolha o tipo do usuário
-              </option>
-              <option value="recrutador">Recrutador</option>
-              <option value="candidato">Candidato</option>
-            </select>
-            <label className="active"> Tipo de usuário</label>
+            <textarea
+              id="beneficios"
+              onChange={setBeneficios}
+              style={{ height: 7 + 'em' }}
+            ></textarea>
+            <label className="active" htmlFor="Beneficios">
+              Beneficios
+            </label>
           </div>
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <input
-              id="senha"
+              id="data"
               type="text"
-              onChange={setSenha}
+              onChange={setDataLimite}
               className="validate"
             ></input>
-            <label className="active" htmlFor="nome">
-              Senha
-            </label>
+            <label className="active">Data limite de candidatura</label>
           </div>
+
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
-            <a className="waves-effect waves-light btn" onClick={salvarUsuario}>
+            <a className="waves-effect waves-light btn" onClick={salvarVaga}>
               Salvar
             </a>
           </div>
