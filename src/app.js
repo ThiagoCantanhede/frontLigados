@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CadastroUsuario from './components/cadastroUsuario';
-import CadastroCurriculo from './components/cadastroCurriculo';
+
 export default function App(props) {
   return (
     <div class="navbar-fixed">
@@ -23,7 +22,7 @@ export default function App(props) {
                 </a>
               </li>
               <li>
-                <a href="">Vagas</a>
+                <Link to="/vaga">Cadastrar vaga</Link>
               </li>
               <li>
                 <a href="">Artigos</a>

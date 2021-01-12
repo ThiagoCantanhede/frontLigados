@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import 'materialize-css/dist/css/materialize.min.css';
 import CadastroUsuario from './components/cadastroUsuario';
 import CadastroCurriculo from './components/cadastroCurriculo';
+import CadastroVaga from './components/cadastroVaga';
 
 import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route path="/" exact={true} component={App} />
       <Route path="/cadastro" component={CadastroUsuario} />
       <Route path="/curriculo" component={CadastroCurriculo} />
+      <Route path="/vaga" component={CadastroVaga} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
