@@ -27,7 +27,7 @@ export default function App(props) {
                 </a>
               </li>
               <li>
-                <a href="">Artigos</a>
+                <Link to="/consultarVagas">Consultar vagas</Link>
               </li>
               <li>
                 <a href="">Editar perfil</a>
