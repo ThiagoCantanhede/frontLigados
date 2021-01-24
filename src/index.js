@@ -7,6 +7,7 @@ import CadastroUsuario from './components/cadastroUsuario';
 import CadastroCurriculo from './components/cadastroCurriculo';
 import CadastroVaga from './components/cadastroVaga';
 import ConsultarVagas from './components/vagas';
+import CadastroArtigo from './components/cadastroArtigo';
 
 import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route path="/curriculo" component={CadastroCurriculo} />
       <Route path="/vaga" component={CadastroVaga} />
       <Route path="/consultarVagas" component={ConsultarVagas} />
+      <Route path="/escreverArtigo" component={CadastroArtigo} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
