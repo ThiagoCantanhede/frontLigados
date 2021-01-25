@@ -32,6 +32,9 @@ export default function App(props) {
               <li>
                 <Link to="/escreverArtigo">Escrever artigo</Link>
               </li>
+              <li>
+                <Link to="/consultarArtigos">Listagem de artigos</Link>
+              </li>
             </ul>
           </div>
         </div>

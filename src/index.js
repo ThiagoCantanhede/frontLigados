@@ -8,6 +8,7 @@ import CadastroCurriculo from './components/cadastroCurriculo';
 import CadastroVaga from './components/cadastroVaga';
 import ConsultarVagas from './components/vagas';
 import CadastroArtigo from './components/cadastroArtigo';
+import ConsultarArtigos from './components/artigos';
 
 import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path="/vaga" component={CadastroVaga} />
       <Route path="/consultarVagas" component={ConsultarVagas} />
       <Route path="/escreverArtigo" component={CadastroArtigo} />
+      <Route path="/consultarArtigos" component={ConsultarArtigos} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
