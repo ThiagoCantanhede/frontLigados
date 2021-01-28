@@ -1,8 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import operacoes from '../services/UsuariosService.js';
 
 export default function Login(props) {
   const history = useHistory();
+  var nomeUsuario = '';
+  const setNomeUsuario = (event) => {
+    nomeUsuario = event.target.value;
+  };
+
+  const login = async () => {
+    const retorno = await operacoes.login(nomeUsuario);
+    console.log(retorno.data);
+  };
 
   return (
     <div id="login-page" class="row container">
@@ -20,9 +30,13 @@ export default function Login(props) {
           <div className="row margin">
             <div className="input-field col s11">
               <i className="mdi-social-person-outline prefix"></i>
-              <input id="username" type="text"></input>
+              <input
+                id="username"
+                type="text"
+                onChange={setNomeUsuario}
+              ></input>
               <label htmlFor="username" className="active">
-                Username
+                Nome de usuário
               </label>
             </div>
           </div>
@@ -31,7 +45,7 @@ export default function Login(props) {
               <i className="mdi-action-lock-outline prefix"></i>
               <input id="password" type="password"></input>
               <label html="password" className="active">
-                Password
+                senha
               </label>
             </div>
           </div>
@@ -39,8 +53,8 @@ export default function Login(props) {
           <div className="row">
             <div className="input-field col s12">
               <a
-                href="index.html"
                 className="btn waves-effect waves-light col s12"
+                onClick={login}
               >
                 Login
               </a>

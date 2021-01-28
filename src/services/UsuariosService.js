@@ -1,5 +1,9 @@
 import http from './http-common';
 
+const login = (usuario) => {
+  return http.get(`/buscarUsuario?usuario=${usuario}`);
+};
+
 const getAll = () => {
   return http.get('/usuario');
 };
@@ -31,4 +35,5 @@ export default {
   update,
   remove,
   removeAll,
+  login,
 };
