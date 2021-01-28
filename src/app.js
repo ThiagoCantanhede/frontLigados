@@ -35,9 +35,6 @@ export default function App(props) {
               <li>
                 <Link to="/consultarArtigos">Listagem de artigos</Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
             </ul>
           </div>
         </div>

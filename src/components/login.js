@@ -11,7 +11,11 @@ export default function Login(props) {
 
   const login = async () => {
     const retorno = await operacoes.login(nomeUsuario);
-    console.log(retorno.data);
+    if (retorno.data) {
+      console.log(retorno.data);
+      localStorage.setItem('login', retorno.data[0].nomeDeUsuario);
+      history.push('/');
+    }
   };
 
   return (

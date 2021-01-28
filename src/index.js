@@ -10,14 +10,14 @@ import ConsultarVagas from './components/vagas';
 import CadastroArtigo from './components/cadastroArtigo';
 import ConsultarArtigos from './components/artigos';
 import Login from './components/login';
-
 import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import RotaPrivada from './rotaPrivada';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact={true} component={App} />
+      <RotaPrivada path="/" exact={true} component={App} />
       <Route path="/cadastro" component={CadastroUsuario} />
       <Route path="/curriculo" component={CadastroCurriculo} />
       <Route path="/vaga" component={CadastroVaga} />
