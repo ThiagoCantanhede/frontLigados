@@ -1,7 +1,7 @@
 import http from './http-common';
 
-const login = (usuario) => {
-  return http.get(`/buscarUsuario?usuario=${usuario}`);
+const login = (usuario, senha) => {
+  return http.get(`/buscarUsuario?usuario=${usuario}&senha=${senha} `);
 };
 
 const getAll = () => {

@@ -5,15 +5,20 @@ import operacoes from '../services/UsuariosService.js';
 export default function Login(props) {
   const history = useHistory();
   var nomeUsuario = '';
+  var senha = '';
+
   const setNomeUsuario = (event) => {
     nomeUsuario = event.target.value;
   };
+  const setSenha = (event) => {
+    senha = event.target.value;
+  };
 
   const login = async () => {
-    const retorno = await operacoes.login(nomeUsuario);
+    const retorno = await operacoes.login(nomeUsuario, senha);
     if (retorno.data) {
       console.log(retorno.data);
-      localStorage.setItem('login', retorno.data[0].nomeDeUsuario);
+      localStorage.setItem('login', JSON.stringify(retorno.data[0]));
       history.push('/');
     }
   };
@@ -47,7 +52,7 @@ export default function Login(props) {
           <div className="row margin">
             <div className="input-field col s11">
               <i className="mdi-action-lock-outline prefix"></i>
-              <input id="password" type="password"></input>
+              <input id="password" type="password" onChange={setSenha}></input>
               <label html="password" className="active">
                 senha
               </label>
