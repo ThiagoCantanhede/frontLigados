@@ -15,11 +15,14 @@ export default function Login(props) {
   };
 
   const login = async () => {
-    const retorno = await operacoes.login(nomeUsuario, senha);
-    if (retorno.data) {
-      console.log(retorno.data);
-      localStorage.setItem('login', JSON.stringify(retorno.data[0]));
-      history.push('/');
+    try {
+      const retorno = await operacoes.login(nomeUsuario, senha);
+      if (retorno.data) {
+        localStorage.setItem('login', JSON.stringify(retorno.data[0]));
+        history.push('/');
+      }
+    } catch (error) {
+      alert('Usuário ou senha incorreto.');
     }
   };
 
