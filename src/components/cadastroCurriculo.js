@@ -24,9 +24,16 @@ export default function CadastroCurriculo(props) {
       formacao: formacao,
       competencias: competencias,
       experienciaProfissional: experienciaProfissional,
+      usuarioId: retornarIdUsuario(),
     };
     operacoes.create(curriculo);
     history.push('/');
+  };
+
+  const retornarIdUsuario = () => {
+    let usuario = localStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    return usuario._id;
   };
 
   return (

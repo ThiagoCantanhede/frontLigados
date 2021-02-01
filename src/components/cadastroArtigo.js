@@ -19,11 +19,18 @@ export default function CadastroArtigo(props) {
       titulo: titulo,
       descricao: descricao,
       data: new Date(),
-      autorId: 'Implementar',
+      autorId: retornarIdUsuario(),
     };
     operacoes.create(artigo);
     history.push('/');
   };
+
+  const retornarIdUsuario = () => {
+    let usuario = localStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    return usuario._id;
+  };
+
   return (
     <div className="row container">
       <form className="col s12">

@@ -43,11 +43,18 @@ export default function CadastroVaga(props) {
       beneficios: beneficios,
       dataLimiteCandidatura: dataLimite,
       dataPublicacao: Date.now(),
-      usuarioId: 'Implementar',
+      usuarioId: retornarIdUsuario(),
     };
     operacoes.create(vaga);
     history.push('/');
   };
+
+  const retornarIdUsuario = () => {
+    let usuario = localStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    return usuario._id;
+  };
+
   return (
     <div className="row container">
       <form className="col s12">

@@ -7,24 +7,18 @@ export default function App(props) {
       <nav className="blue " role="navigation">
         <div className="container">
           <div className="nav-wrapper">
-            <a href="#" className="brand-logo">
-              Logo
-            </a>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <ul id="nav-mobile">
               <li>
-                <a>
-                  <Link to="/cadastro">Cadastrar usuário</Link>
-                </a>
+                <Link to="/cadastro">Cadastrar usuário</Link>
               </li>
               <li>
-                <a>
-                  <Link to="/curriculo">Cadastrar currículo</Link>
-                </a>
+                <Link to="/curriculo">Cadastrar currículo</Link>
               </li>
               <li>
-                <a>
-                  <Link to="/vaga">Cadastrar vaga</Link>
-                </a>
+                <Link to="/consultarCurriculos">Consultar currículos</Link>
+              </li>
+              <li>
+                <Link to="/vaga">Cadastrar vaga</Link>
               </li>
               <li>
                 <Link to="/consultarVagas">Consultar vagas</Link>

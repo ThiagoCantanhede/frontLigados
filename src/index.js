@@ -13,6 +13,7 @@ import Login from './components/login';
 import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RotaPrivada from './rotaPrivada';
+import ConsultarCurriculos from './components/curriculos';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,6 +21,7 @@ ReactDOM.render(
       <RotaPrivada path="/" exact={true} component={App} />
       <Route path="/cadastro" component={CadastroUsuario} />
       <Route path="/curriculo" component={CadastroCurriculo} />
+      <Route path="/consultarCurriculos" component={ConsultarCurriculos} />
       <Route path="/vaga" component={CadastroVaga} />
       <Route path="/consultarVagas" component={ConsultarVagas} />
       <Route path="/escreverArtigo" component={CadastroArtigo} />
