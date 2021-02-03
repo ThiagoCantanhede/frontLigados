@@ -23,8 +23,10 @@ export default function ConsultarCurriculos(props) {
         {curriculos.map((c, i) => (
           <li key={i} className="collection-item avatar">
             <span className="title">Currículo</span>
-            <p>{c.usuarioNome}</p>
-            <a href="#!" className="secondary-content"></a>
+            <p>Nome: {c.usuarioNome}</p>
+            <a href="#!" className="secondary-content">
+              Visualizar currículo
+            </a>
           </li>
         ))}
       </ul>

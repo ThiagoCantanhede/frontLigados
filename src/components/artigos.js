@@ -21,8 +21,8 @@ export default function ConsultarArtigos(props) {
       <ul className="collection">
         {artigos.map((a) => (
           <li className="collection-item avatar">
-            <span className="title">{a.titulo}</span>
-            <p>{a.autorNome}</p>
+            <span className="title">Título: {a.titulo}</span>
+            <p>Autor: {a.autorNome}</p>
             <a href="#!" className="secondary-content">
               Ler artigo
             </a>

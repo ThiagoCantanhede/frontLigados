@@ -26,8 +26,7 @@ export default function ConsultarVagas(props) {
               <p>{v.descricao}</p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
+              <a href="#">candidatar-se</a>
             </div>
           </div>
         </div>

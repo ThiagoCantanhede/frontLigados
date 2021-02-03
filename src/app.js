@@ -15,13 +15,13 @@ export default function App(props) {
                 <Link to="/curriculo">Cadastrar currículo</Link>
               </li>
               <li>
-                <Link to="/consultarCurriculos">Consultar currículos</Link>
+                <Link to="/consultarCurriculos">Listagem de currículos</Link>
               </li>
               <li>
                 <Link to="/vaga">Cadastrar vaga</Link>
               </li>
               <li>
-                <Link to="/consultarVagas">Consultar vagas</Link>
+                <Link to="/consultarVagas">Listagem de vagas</Link>
               </li>
               <li>
                 <Link to="/escreverArtigo">Escrever artigo</Link>

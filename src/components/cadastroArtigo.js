@@ -33,7 +33,7 @@ export default function CadastroArtigo(props) {
     let usuario = localStorage.getItem('login');
     usuario = JSON.parse(usuario);
     id = usuario._id;
-    nome = usuario.nomeDeUsuario;
+    nome = usuario.nome;
   };
 
   return (
