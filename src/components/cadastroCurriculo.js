@@ -6,6 +6,8 @@ export default function CadastroCurriculo(props) {
   var formacao = '';
   var competencias = '';
   var experienciaProfissional = '';
+  var nome = '';
+  var id = '';
   const history = useHistory();
 
   const setFormacao = (event) => {
@@ -20,20 +22,23 @@ export default function CadastroCurriculo(props) {
   };
 
   const salvarCurriculo = () => {
+    retornarIdNomeUsuario();
     var curriculo = {
       formacao: formacao,
       competencias: competencias,
       experienciaProfissional: experienciaProfissional,
-      usuarioId: retornarIdUsuario(),
+      usuarioId: id,
+      usuarioNome: nome,
     };
     operacoes.create(curriculo);
     history.push('/');
   };
 
-  const retornarIdUsuario = () => {
+  const retornarIdNomeUsuario = () => {
     let usuario = localStorage.getItem('login');
     usuario = JSON.parse(usuario);
-    return usuario._id;
+    id = usuario._id;
+    nome = usuario.nomeDeUsuario;
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/CurriculoService.js';
+import operacoesUsuario from '../services/UsuariosService.js';
 
 export default function ConsultarCurriculos(props) {
   const history = useHistory();
@@ -17,23 +18,17 @@ export default function ConsultarCurriculos(props) {
 
   const montarCards = async () => {
     const curriculos = await retornarCurriculos();
-    const teste = curriculos.map((v) => {
-      return (
-        <div class="col s12 m4">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">{v.titulo}</span>
-              <p>{v.descricao}</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      );
-    });
-    return teste;
+    return (
+      <ul className="collection">
+        {curriculos.map((c, i) => (
+          <li key={i} className="collection-item avatar">
+            <span className="title">Currículo</span>
+            <p>{c.usuarioNome}</p>
+            <a href="#!" className="secondary-content"></a>
+          </li>
+        ))}
+      </ul>
+    );
   };
 
   return <div className="row container">{cardsCurriculos}</div>;

@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 export default function CadastroArtigo(props) {
   var titulo = '';
   var descricao = '';
+  var nome = '';
+  var id = '';
 
   const history = useHistory();
   const setTitulo = (event) => {
@@ -15,20 +17,23 @@ export default function CadastroArtigo(props) {
   };
 
   const salvarArtigo = () => {
+    retornarIdNomeUsuario();
     var artigo = {
       titulo: titulo,
       descricao: descricao,
       data: new Date(),
-      autorId: retornarIdUsuario(),
+      autorId: id,
+      autorNome: nome,
     };
     operacoes.create(artigo);
     history.push('/');
   };
 
-  const retornarIdUsuario = () => {
+  const retornarIdNomeUsuario = () => {
     let usuario = localStorage.getItem('login');
     usuario = JSON.parse(usuario);
-    return usuario._id;
+    id = usuario._id;
+    nome = usuario.nomeDeUsuario;
   };
 
   return (
