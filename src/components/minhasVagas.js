@@ -4,7 +4,7 @@ import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 import operacaoesUsuarios from '../services/UsuariosService.js';
 
-export default function ConsultarVagas(props) {
+export default function MinhasVagas(props) {
   const history = useHistory();
   const [cardsVagasAnunciadas, montarCard] = useState([]);
   let idCandidato = null;
@@ -27,12 +27,14 @@ export default function ConsultarVagas(props) {
 
   const visualizarCandidatos = async (vaga) => {
     const listaCandidatos = [];
+    let candidato = null;
     const listaIdsCandidatos = await operacaoesCandidatoVaga.encontrarCandidatosDaVaga(
       vaga._id
     );
 
-    listaIdsCandidatos.map(async (l) => {
-      listaCandidatos.push(await operacaoesUsuarios.get(l.usuarioId));
+    listaIdsCandidatos.data.map(async (l) => {
+      candidato = await operacaoesUsuarios.get(l.usuarioId);
+      listaCandidatos.push(candidato.data);
     });
 
     console.log(listaCandidatos);

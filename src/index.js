@@ -14,6 +14,7 @@ import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RotaPrivada from './rotaPrivada';
 import ConsultarCurriculos from './components/curriculos';
+import MinhasVagas from './components/minhasVagas';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route path="/escreverArtigo" component={CadastroArtigo} />
       <Route path="/consultarArtigos" component={ConsultarArtigos} />
       <Route path="/login" component={Login} />
+      <Route path="/minhasVagas" component={MinhasVagas} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
