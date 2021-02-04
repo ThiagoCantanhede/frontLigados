@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/UsuariosService.js';
+import { Link } from 'react-router-dom';
 
 export default function Login(props) {
   const history = useHistory();
@@ -75,7 +76,9 @@ export default function Login(props) {
           <div className="row">
             <div className="input-field col s6 m6 l6">
               <p className="margin medium-small">
-                <a href="page-register.html">Register Now!</a>
+                <a href="page-register.html">
+                  <Link to="/cadastro">Cadastrar novo usuário</Link>
+                </a>
               </p>
             </div>
           </div>

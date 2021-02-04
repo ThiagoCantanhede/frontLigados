@@ -24,6 +24,10 @@ const removeAll = () => {
   return http.delete(`/vaga`);
 };
 
+const encontrarVagasDoRecrutador = (id) => {
+  return http.get(`/vaga?usuario=${id}`);
+};
+
 export default {
   getAll,
   get,
@@ -31,4 +35,5 @@ export default {
   update,
   remove,
   removeAll,
+  encontrarVagasDoRecrutador,
 };
