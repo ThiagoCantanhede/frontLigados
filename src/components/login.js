@@ -27,10 +27,10 @@ export default function Login(props) {
   };
 
   return (
-    <div id="login-page" class="row container">
+    <div id="login-page" className="row container">
       <div className="input-field col s12"></div>
       <div className="input-field col s3"></div>
-      <div class="col s5 z-depth-4 card-panel">
+      <div className="col s5 z-depth-4 card-panel">
         <form className="col s12">
           <div className="row">
             <div className="input-field col s12 center">

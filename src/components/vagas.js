@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
+import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 
 export default function ConsultarVagas(props) {
   const history = useHistory();
   const [cardsVagasAnunciadas, montarCard] = useState([]);
+  let idCandidato = null;
 
   useEffect(async () => {
     montarCard(await montarCards());
@@ -15,18 +17,52 @@ export default function ConsultarVagas(props) {
     return vagas.data;
   };
 
+  const checarSeUsuarioJaSeCandidatouAVaga = async (idVaga) => {
+    const candidatos = await operacaoesCandidatoVaga.encontrarCandidatosDaVaga(
+      idVaga
+    );
+    const candidato = candidatos.data.find((c) => c.usuarioId === idCandidato);
+    return candidato ? true : false;
+  };
+
+  const salvarCandidatura = async (v) => {
+    retornarIdUsuario();
+    if (!(await checarSeUsuarioJaSeCandidatouAVaga(v._id))) {
+      const candidatura = {
+        vagaId: v._id,
+        usuarioId: idCandidato,
+      };
+      try {
+        await operacaoesCandidatoVaga.create(candidatura);
+        alert('Candidatura realizada!');
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      alert('Candidatura não realizada. Você já se candidatou a vaga!');
+    }
+  };
+
+  const retornarIdUsuario = () => {
+    let usuario = localStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    idCandidato = usuario._id;
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
-    const teste = vagas.map((v) => {
+    const teste = vagas.map((v, i) => {
       return (
-        <div class="col s12 m4">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">{v.titulo}</span>
+        <div key={i} className="col s12 m4">
+          <div className="card blue-grey darken-1">
+            <div className="card-content white-text">
+              <span className="card-title">{v.titulo}</span>
               <p>{v.descricao}</p>
             </div>
-            <div class="card-action">
-              <a href="#">candidatar-se</a>
+            <div className="card-action">
+              <a href="#" onClick={() => salvarCandidatura(v)}>
+                candidatar-se
+              </a>
             </div>
           </div>
         </div>
