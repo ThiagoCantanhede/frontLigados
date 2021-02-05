@@ -8,6 +8,11 @@ export default function MinhasVagas(props) {
   const history = useHistory();
   const [cardsVagasAnunciadas, montarCard] = useState([]);
   let idCandidato = null;
+  const vagasCandidatos = [];
+  let objetoVaga = {
+    vaga: null,
+    candidatos: null,
+  };
 
   useEffect(async () => {
     montarCard(await montarCards());
@@ -16,7 +21,23 @@ export default function MinhasVagas(props) {
   const retornarVagas = async () => {
     retornarIdUsuario();
     const vagas = await operacoes.encontrarVagasDoRecrutador(idCandidato);
-    return vagas.data;
+    const vagasXCandidatos = await operacaoesCandidatoVaga.getAll();
+    const candidatos = await operacaoesUsuarios.getAll();
+    const cand = [];
+    console.log(candidatos.data);
+    vagas.data.map((v) => {
+      vagasXCandidatos.data.map((vc) => {
+        candidatos.data.map((c) => {
+          if (vc.vagaId === v._id && vc.usuarioId === c._id) {
+            cand.push(c);
+          }
+        });
+      });
+      objetoVaga.vaga = v;
+      objetoVaga.candidatos = cand;
+      vagasCandidatos.push(objetoVaga);
+    });
+    return vagasCandidatos;
   };
 
   const retornarIdUsuario = () => {
@@ -37,23 +58,26 @@ export default function MinhasVagas(props) {
       listaCandidatos.push(candidato.data);
     });
 
-    console.log(listaCandidatos);
+    return listaCandidatos;
   };
 
   const montarCards = async () => {
     const vagas = await retornarVagas();
     const teste = vagas.map((v, i) => {
+      console.log(v);
       return (
         <div key={i} className="col s12 m4">
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
-              <span className="card-title">{v.titulo}</span>
-              <p>{v.descricao}</p>
-            </div>
-            <div className="card-action">
-              <a href="#" onClick={() => visualizarCandidatos(v)}>
-                Visualizar candidatos
-              </a>
+              <span className="card-title">{v.vaga.titulo}</span>
+              <span>CANDIDATOS:</span>
+              {v.candidatos.map((c) => {
+                return (
+                  <p>
+                    {c.nome} - {c.email}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
