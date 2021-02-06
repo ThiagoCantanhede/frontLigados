@@ -24,6 +24,10 @@ const removeAll = () => {
   return http.delete(`/curriculo`);
 };
 
+const encontrarCurriculoPorUsuario = (usuarioId) => {
+  return http.get(`/curriculoPorUsuario?candidato=${usuarioId}`);
+};
+
 export default {
   getAll,
   get,
@@ -31,4 +35,5 @@ export default {
   update,
   remove,
   removeAll,
+  encontrarCurriculoPorUsuario,
 };

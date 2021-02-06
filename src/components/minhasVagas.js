@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 import operacaoesUsuarios from '../services/UsuariosService.js';
+import { Link } from 'react-router-dom';
 
 export default function MinhasVagas(props) {
   const history = useHistory();
@@ -24,7 +25,7 @@ export default function MinhasVagas(props) {
     const vagasXCandidatos = await operacaoesCandidatoVaga.getAll();
     const candidatos = await operacaoesUsuarios.getAll();
     const cand = [];
-    console.log(candidatos.data);
+
     vagas.data.map((v) => {
       vagasXCandidatos.data.map((vc) => {
         candidatos.data.map((c) => {
@@ -61,6 +62,10 @@ export default function MinhasVagas(props) {
     return listaCandidatos;
   };
 
+  const abrirCurriculo = (candidato) => {
+    localStorage.setItem('visualisandoCandidato', candidato._id);
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
     const teste = vagas.map((v, i) => {
@@ -74,7 +79,11 @@ export default function MinhasVagas(props) {
               {v.candidatos.map((c) => {
                 return (
                   <p>
-                    {c.nome} - {c.email}
+                    <a href="#" onClick={() => abrirCurriculo(c)}>
+                      <Link to="/candidato">
+                        {c.nome} - {c.email}
+                      </Link>
+                    </a>
                   </p>
                 );
               })}
