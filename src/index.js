@@ -16,6 +16,8 @@ import RotaPrivada from './rotaPrivada';
 import ConsultarCurriculos from './components/curriculos';
 import MinhasVagas from './components/minhasVagas';
 import Candidato from './components/modalCandidato';
+import VisualizarEditarCurriculo from './components/visualizarEditarCurriculo';
+import VisualizarVaga from './components/visualizarVaga';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -31,6 +33,11 @@ ReactDOM.render(
       <Route path="/login" component={Login} />
       <Route path="/minhasVagas" component={MinhasVagas} />
       <Route path="/candidato" component={Candidato} />
+      <Route
+        path="/visualizarEditarCurriculo"
+        component={VisualizarEditarCurriculo}
+      />
+      <Route path="/visualizarVaga" component={VisualizarVaga} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

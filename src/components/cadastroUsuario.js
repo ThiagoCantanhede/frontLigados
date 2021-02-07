@@ -49,7 +49,7 @@ export default function CadastroUsuario(props) {
             <input
               id="nomeCompleto"
               type="text"
-              onChange={setNomeCompleto}
+              value={setNomeCompleto}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -62,7 +62,7 @@ export default function CadastroUsuario(props) {
             <input
               id="nomeUsuario"
               type="text"
-              onChange={setNomeUsuario}
+              value={setNomeUsuario}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -75,7 +75,7 @@ export default function CadastroUsuario(props) {
             <input
               id="email"
               type="text"
-              onChange={setEmail}
+              value={setEmail}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -85,7 +85,7 @@ export default function CadastroUsuario(props) {
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
-            <select className="browser-default" onChange={setTipo}>
+            <select className="browser-default" value={setTipo}>
               <option value="" disabled selected>
                 Escolha o tipo do usuário
               </option>
@@ -100,7 +100,7 @@ export default function CadastroUsuario(props) {
             <input
               id="senha"
               type="text"
-              onChange={setSenha}
+              value={setSenha}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">

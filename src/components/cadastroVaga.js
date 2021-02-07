@@ -65,7 +65,7 @@ export default function CadastroVaga(props) {
             <input
               id="titulo"
               type="text"
-              onChange={setTitulo}
+              value={setTitulo}
               className="validate"
             ></input>
             <label className="active" htmlFor="titulo">
@@ -77,7 +77,7 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="descricao"
-              onChange={setDescricao}
+              value={setDescricao}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="descricao">
@@ -89,7 +89,7 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="competencias"
-              onChange={setCompetencias}
+              value={setCompetencias}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="competencias">
@@ -102,7 +102,7 @@ export default function CadastroVaga(props) {
             <input
               id="rendimentos"
               type="text"
-              onChange={setRendimentos}
+              value={setRendimentos}
               className="validate"
             ></input>
             <label className="active"> Rendimentos</label>
@@ -112,7 +112,7 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="beneficios"
-              onChange={setBeneficios}
+              value={setBeneficios}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="Beneficios">
@@ -125,7 +125,7 @@ export default function CadastroVaga(props) {
             <input
               id="data"
               type="text"
-              onChange={setDataLimite}
+              value={setDataLimite}
               className="validate"
             ></input>
             <label className="active">Data limite de candidatura</label>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/CurriculoService.js';
-import operacoesUsuario from '../services/UsuariosService.js';
+import { Link } from 'react-router-dom';
 
 export default function ConsultarCurriculos(props) {
   const history = useHistory();
@@ -16,6 +16,10 @@ export default function ConsultarCurriculos(props) {
     return curriculos.data;
   };
 
+  const abrirCurriculo = (curriculo) => {
+    localStorage.setItem('visualisandoCandidato', curriculo.usuarioId);
+  };
+
   const montarCards = async () => {
     const curriculos = await retornarCurriculos();
     return (
@@ -24,8 +28,12 @@ export default function ConsultarCurriculos(props) {
           <li key={i} className="collection-item avatar">
             <span className="title">Currículo</span>
             <p>Nome: {c.usuarioNome}</p>
-            <a href="#!" className="secondary-content">
-              Visualizar currículo
+            <a
+              href="#!"
+              className="secondary-content"
+              onClick={() => abrirCurriculo(c)}
+            >
+              <Link to="/visualizarEditarCurriculo">Visualizar currículo</Link>
             </a>
           </li>
         ))}

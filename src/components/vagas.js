@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
+import { Link } from 'react-router-dom';
 
 export default function ConsultarVagas(props) {
   const history = useHistory();
@@ -49,6 +50,10 @@ export default function ConsultarVagas(props) {
     idCandidato = usuario._id;
   };
 
+  const visualizarVaga = (vaga) => {
+    localStorage.setItem('visualisandoVaga', JSON.stringify(vaga));
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
     const teste = vagas.map((v, i) => {
@@ -62,6 +67,9 @@ export default function ConsultarVagas(props) {
             <div className="card-action">
               <a href="#" onClick={() => salvarCandidatura(v)}>
                 candidatar-se
+              </a>
+              <a href="#" onClick={() => visualizarVaga(v)}>
+                <Link to="/visualizarVaga">Visualizar vaga</Link>
               </a>
             </div>
           </div>

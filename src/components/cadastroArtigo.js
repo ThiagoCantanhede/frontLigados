@@ -46,7 +46,7 @@ export default function CadastroArtigo(props) {
             <input
               id="titulo"
               type="text"
-              onChange={setTitulo}
+              value={setTitulo}
               className="validate"
             ></input>
             <label className="active" htmlFor="titulo">
@@ -58,7 +58,7 @@ export default function CadastroArtigo(props) {
           <div className="input-field col s8">
             <textarea
               id="descricao"
-              onChange={setDescricao}
+              value={setDescricao}
               style={{ height: 40 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="descricao">
