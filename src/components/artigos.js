@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/ArtigoService.js';
+import { Link } from 'react-router-dom';
 
 export default function ConsultarArtigos(props) {
   const history = useHistory();
@@ -15,6 +16,10 @@ export default function ConsultarArtigos(props) {
     return artigos.data;
   };
 
+  const visualizarArtigo = (artigo) => {
+    localStorage.setItem('visualisandoArtigo', JSON.stringify(artigo));
+  };
+
   const montarGrid = async () => {
     const artigos = await retornarArtigos();
     return (
@@ -23,8 +28,8 @@ export default function ConsultarArtigos(props) {
           <li className="collection-item avatar">
             <span className="title">Título: {a.titulo}</span>
             <p>Autor: {a.autorNome}</p>
-            <a href="#!" className="secondary-content">
-              Ler artigo
+            <a href="#" onClick={() => visualizarArtigo(a)}>
+              <Link to="/visualizarArtigo">Ler Artigo</Link>
             </a>
           </li>
         ))}

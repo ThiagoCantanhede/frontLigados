@@ -18,27 +18,6 @@ export default function VisualizarEditarCurriculo(props) {
     var competencias = retorno.data[0].competencias;
     var experiencia = retorno.data[0].experienciaProfissional;
 
-    const setFormacao = (event) => {
-      formacao = event.target.value;
-    };
-    const setCompetencias = (event) => {
-      competencias = event.target.value;
-    };
-
-    const setExperienciaProfissional = (event) => {
-      experiencia = event.target.value;
-    };
-
-    const salvarCurriculo = () => {
-      var curriculo = {
-        formacao: formacao,
-        competencias: competencias,
-        experienciaProfissional: experiencia,
-      };
-      operacoes.update(retorno.data[0]._id, curriculo);
-      history.push('/');
-    };
-
     return (
       <div className="row container">
         <form className="col s12">
@@ -48,7 +27,7 @@ export default function VisualizarEditarCurriculo(props) {
               id="formacao"
               style={{ height: 7 + 'em' }}
               value={formacao}
-              value={setFormacao}
+              readOnly
             ></textarea>
             <label className="active" htmlFor="formacao">
               Formação
@@ -60,7 +39,7 @@ export default function VisualizarEditarCurriculo(props) {
               id="competencias"
               style={{ height: 7 + 'em' }}
               value={competencias}
-              value={setCompetencias}
+              readOnly
             ></textarea>
             <label className="active" htmlFor="competencias">
               Competências
@@ -72,7 +51,7 @@ export default function VisualizarEditarCurriculo(props) {
               id="experiencia"
               style={{ height: 7 + 'em' }}
               value={experiencia}
-              value={setExperienciaProfissional}
+              readOnly
             ></textarea>
             <label className="active" htmlFor="experiencia">
               Experiência profissional
