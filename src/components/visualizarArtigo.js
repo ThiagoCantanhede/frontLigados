@@ -32,7 +32,7 @@ export default function VisualizarArtigo(props) {
               <input
                 id="titulo"
                 type="text"
-                onChange={artigoRecuperado.titulo}
+                value={artigoRecuperado.titulo}
                 className="validate"
                 readOnly
               ></input>
@@ -45,7 +45,7 @@ export default function VisualizarArtigo(props) {
             <div className="input-field col s8">
               <textarea
                 id="descricao"
-                onChange={artigoRecuperado.descricao}
+                value={artigoRecuperado.descricao}
                 style={{ height: 40 + 'em' }}
                 readOnly
               ></textarea>

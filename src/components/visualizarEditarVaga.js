@@ -70,7 +70,7 @@ export default function VisualizarEditarVaga(props) {
             <input
               id="titulo"
               type="text"
-              onChange={titulo}
+              value={titulo}
               onChange={handleTitulo}
               className="validate"
             ></input>
@@ -83,7 +83,7 @@ export default function VisualizarEditarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="descricao"
-              onChange={descricao}
+              value={descricao}
               onChange={handleDescricao}
               style={{ height: 7 + 'em' }}
             ></textarea>
@@ -96,7 +96,7 @@ export default function VisualizarEditarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="competencias"
-              onChange={competencias}
+              value={competencias}
               onChange={handleCompetencias}
               style={{ height: 7 + 'em' }}
             ></textarea>
@@ -110,7 +110,7 @@ export default function VisualizarEditarVaga(props) {
             <input
               id="rendimentos"
               type="text"
-              onChange={rendimentos}
+              value={rendimentos}
               onChange={handleRendimentos}
               className="validate"
             ></input>
@@ -121,7 +121,7 @@ export default function VisualizarEditarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="beneficios"
-              onChange={beneficios}
+              value={beneficios}
               onChange={handleBeneficios}
               style={{ height: 7 + 'em' }}
             ></textarea>

@@ -23,7 +23,7 @@ export default function VisualizarVaga(props) {
             <input
               id="titulo"
               type="text"
-              onChange={vaga ? vaga.titulo : ''}
+              value={vaga ? vaga.titulo : ''}
               className="validate"
             ></input>
             <label className="active" htmlFor="titulo">
@@ -35,7 +35,7 @@ export default function VisualizarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="descricao"
-              onChange={vaga ? vaga.descricao : ''}
+              value={vaga ? vaga.descricao : ''}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="descricao">
@@ -47,7 +47,7 @@ export default function VisualizarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="competencias"
-              onChange={vaga ? vaga.competencias : ''}
+              value={vaga ? vaga.competencias : ''}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="competencias">
@@ -60,7 +60,7 @@ export default function VisualizarVaga(props) {
             <input
               id="rendimentos"
               type="text"
-              onChange={vaga ? vaga.rendimentos : ''}
+              value={vaga ? vaga.rendimentos : ''}
               className="validate"
             ></input>
             <label className="active"> Rendimentos</label>
@@ -70,7 +70,7 @@ export default function VisualizarVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="beneficios"
-              onChange={vaga ? vaga.beneficios : ''}
+              value={vaga ? vaga.beneficios : ''}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="Beneficios">

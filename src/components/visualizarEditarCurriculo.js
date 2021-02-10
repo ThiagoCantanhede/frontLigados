@@ -26,7 +26,7 @@ export default function VisualizarEditarCurriculo(props) {
             <textarea
               id="formacao"
               style={{ height: 7 + 'em' }}
-              onChange={formacao}
+              value={formacao}
               readOnly
             ></textarea>
             <label className="active" htmlFor="formacao">
@@ -38,7 +38,7 @@ export default function VisualizarEditarCurriculo(props) {
             <textarea
               id="competencias"
               style={{ height: 7 + 'em' }}
-              onChange={competencias}
+              value={competencias}
               readOnly
             ></textarea>
             <label className="active" htmlFor="competencias">
@@ -50,7 +50,7 @@ export default function VisualizarEditarCurriculo(props) {
             <textarea
               id="experiencia"
               style={{ height: 7 + 'em' }}
-              onChange={experiencia}
+              value={experiencia}
               readOnly
             ></textarea>
             <label className="active" htmlFor="experiencia">
