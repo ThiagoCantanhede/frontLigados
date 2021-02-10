@@ -19,6 +19,7 @@ import Candidato from './components/modalCandidato';
 import VisualizarEditarCurriculo from './components/visualizarEditarCurriculo';
 import VisualizarVaga from './components/visualizarVaga';
 import VisualizarArtigo from './components/visualizarArtigo';
+import VisualizarEditarVaga from './components/visualizarEditarVaga';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -40,6 +41,7 @@ ReactDOM.render(
       />
       <Route path="/visualizarVaga" component={VisualizarVaga} />
       <Route path="/visualizarArtigo" component={VisualizarArtigo} />
+      <Route path="/visualizarEditarVaga" component={VisualizarEditarVaga} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

@@ -26,7 +26,7 @@ export default function CadastroCurriculo(props) {
             <textarea
               id="formacao"
               style={{ height: 7 + 'em' }}
-              value={formacao}
+              onChange={formacao}
               readOnly
             ></textarea>
             <label className="active" htmlFor="formacao">
@@ -38,7 +38,7 @@ export default function CadastroCurriculo(props) {
             <textarea
               id="competencias"
               style={{ height: 7 + 'em' }}
-              value={competencias}
+              onChange={competencias}
               readOnly
             ></textarea>
             <label className="active" htmlFor="competencias">
@@ -50,7 +50,7 @@ export default function CadastroCurriculo(props) {
             <textarea
               id="experiencia"
               style={{ height: 7 + 'em' }}
-              value={experiencia}
+              onChange={experiencia}
               readOnly
             ></textarea>
             <label className="active" htmlFor="experiencia">

@@ -48,7 +48,7 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="formacao"
-            value={setFormacao}
+            onChange={setFormacao}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="formacao">
@@ -59,7 +59,7 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="competencias"
-            value={setCompetencias}
+            onChange={setCompetencias}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="competencias">
@@ -70,7 +70,7 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="experiencia"
-            value={setExperienciaProfissional}
+            onChange={setExperienciaProfissional}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="experiencia">

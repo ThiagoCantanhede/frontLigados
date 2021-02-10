@@ -1,52 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import operacoes from '../services/VagasService.js';
-import { useHistory } from 'react-router-dom';
 
-export default function CadastroVaga(props) {
-  var titulo = '';
-  var descricao = '';
-  var competencias = '';
-  var rendimentos = '';
-  var beneficios = '';
-  var dataLimite = '';
+export default function VisualizarEditarVaga(props) {
+  const [vaga, setVaga] = useState(null);
+  const [titulo, setTitulo] = useState('');
+  const [beneficios, setBeneficios] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [competencias, setCompetencias] = useState('');
+  const [rendimentos, setRendimentos] = useState('');
 
-  const history = useHistory();
-  const setTitulo = (event) => {
-    titulo = event.target.value;
-  };
-  const setDescricao = (event) => {
-    descricao = event.target.value;
-  };
+  useEffect(() => {
+    montarVaga();
+  }, [titulo, descricao, competencias, rendimentos, beneficios]);
 
-  const setCompetencias = (event) => {
-    competencias = event.target.value;
-  };
-
-  const setRendimentos = (event) => {
-    rendimentos = event.target.value;
-  };
-
-  const setBeneficios = (event) => {
-    beneficios = event.target.value;
+  const montarVaga = () => {
+    let lVaga = localStorage.getItem('visualisandoVaga');
+    lVaga = JSON.parse(lVaga);
+    lVaga = lVaga.vaga;
+    setVaga(lVaga);
+    if (titulo === '') setTitulo(lVaga.titulo);
+    if (beneficios === '') setBeneficios(lVaga.beneficios);
+    if (descricao === '') setDescricao(lVaga.descricao);
+    if (competencias === '') setCompetencias(lVaga.competencias);
+    if (rendimentos === '') setRendimentos(lVaga.rendimentos);
   };
 
-  const setDataLimite = (event) => {
-    dataLimite = event.target.value;
+  const handleTitulo = (event) => {
+    setTitulo(event.target.value);
+  };
+  const handleDescricao = (event) => {
+    console.log(event.target.value);
+    setDescricao(event.target.value);
+  };
+  const handleCompetencias = (event) => {
+    setCompetencias(event.target.value);
+  };
+  const handleRendimentos = (event) => {
+    setRendimentos(event.target.value);
+  };
+  const handleBeneficios = (event) => {
+    setBeneficios(event.target.value);
   };
 
   const salvarVaga = () => {
-    var vaga = {
+    let lvaga = {
       titulo: titulo,
       competencias: competencias,
       descricao: descricao,
       rendimentos: rendimentos,
       beneficios: beneficios,
-      dataLimiteCandidatura: dataLimite,
-      dataPublicacao: Date.now(),
       usuarioId: retornarIdUsuario(),
     };
-    operacoes.create(vaga);
-    history.push('/');
+    operacoes.update(vaga._id, lvaga);
   };
 
   const retornarIdUsuario = () => {
@@ -65,7 +70,8 @@ export default function CadastroVaga(props) {
             <input
               id="titulo"
               type="text"
-              onChange={setTitulo}
+              onChange={titulo}
+              onChange={handleTitulo}
               className="validate"
             ></input>
             <label className="active" htmlFor="titulo">
@@ -77,7 +83,8 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="descricao"
-              onChange={setDescricao}
+              onChange={descricao}
+              onChange={handleDescricao}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="descricao">
@@ -89,7 +96,8 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="competencias"
-              onChange={setCompetencias}
+              onChange={competencias}
+              onChange={handleCompetencias}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="competencias">
@@ -102,7 +110,8 @@ export default function CadastroVaga(props) {
             <input
               id="rendimentos"
               type="text"
-              onChange={setRendimentos}
+              onChange={rendimentos}
+              onChange={handleRendimentos}
               className="validate"
             ></input>
             <label className="active"> Rendimentos</label>
@@ -112,25 +121,14 @@ export default function CadastroVaga(props) {
           <div className="input-field col s8">
             <textarea
               id="beneficios"
-              onChange={setBeneficios}
+              onChange={beneficios}
+              onChange={handleBeneficios}
               style={{ height: 7 + 'em' }}
             ></textarea>
             <label className="active" htmlFor="Beneficios">
               Beneficios
             </label>
           </div>
-
-          <div className="input-field col s4"></div>
-          <div className="input-field col s8">
-            <input
-              id="data"
-              type="text"
-              onChange={setDataLimite}
-              className="validate"
-            ></input>
-            <label className="active">Data limite de candidatura</label>
-          </div>
-
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
             <a className="waves-effect waves-light btn" onClick={salvarVaga}>

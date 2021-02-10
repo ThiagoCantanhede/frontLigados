@@ -43,7 +43,11 @@ export default function Login(props) {
           <div className="row margin">
             <div className="input-field col s11">
               <i className="mdi-social-person-outline prefix"></i>
-              <input id="username" type="text" value={setNomeUsuario}></input>
+              <input
+                id="username"
+                type="text"
+                onChange={setNomeUsuario}
+              ></input>
               <label htmlFor="username" className="active">
                 Nome de usuário
               </label>
@@ -52,7 +56,7 @@ export default function Login(props) {
           <div className="row margin">
             <div className="input-field col s11">
               <i className="mdi-action-lock-outline prefix"></i>
-              <input id="password" type="password" value={setSenha}></input>
+              <input id="password" type="password" onChange={setSenha}></input>
               <label html="password" className="active">
                 senha
               </label>

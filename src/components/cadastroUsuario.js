@@ -49,7 +49,7 @@ export default function CadastroUsuario(props) {
             <input
               id="nomeCompleto"
               type="text"
-              value={setNomeCompleto}
+              onChange={setNomeCompleto}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -62,7 +62,7 @@ export default function CadastroUsuario(props) {
             <input
               id="nomeUsuario"
               type="text"
-              value={setNomeUsuario}
+              onChange={setNomeUsuario}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -75,7 +75,7 @@ export default function CadastroUsuario(props) {
             <input
               id="email"
               type="text"
-              value={setEmail}
+              onChange={setEmail}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">
@@ -85,12 +85,12 @@ export default function CadastroUsuario(props) {
 
           <div className="input-field col s4"></div>
           <div className="input-field col s8">
-            <select className="browser-default" value={setTipo}>
-              <option value="" disabled selected>
+            <select className="browser-default" onChange={setTipo}>
+              <option onChange="" disabled selected>
                 Escolha o tipo do usuário
               </option>
-              <option value="recrutador">Recrutador</option>
-              <option value="candidato">Candidato</option>
+              <option onChange="recrutador">Recrutador</option>
+              <option onChange="candidato">Candidato</option>
             </select>
             <label className="active"> Tipo de usuário</label>
           </div>
@@ -100,7 +100,7 @@ export default function CadastroUsuario(props) {
             <input
               id="senha"
               type="text"
-              value={setSenha}
+              onChange={setSenha}
               className="validate"
             ></input>
             <label className="active" htmlFor="nome">

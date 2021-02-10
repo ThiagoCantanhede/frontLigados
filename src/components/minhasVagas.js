@@ -47,23 +47,17 @@ export default function MinhasVagas(props) {
     idCandidato = usuario._id;
   };
 
-  const visualizarCandidatos = async (vaga) => {
-    const listaCandidatos = [];
-    let candidato = null;
-    const listaIdsCandidatos = await operacaoesCandidatoVaga.encontrarCandidatosDaVaga(
-      vaga._id
-    );
-
-    listaIdsCandidatos.data.map(async (l) => {
-      candidato = await operacaoesUsuarios.get(l.usuarioId);
-      listaCandidatos.push(candidato.data);
-    });
-
-    return listaCandidatos;
-  };
-
   const abrirCurriculo = (candidato) => {
     localStorage.setItem('visualisandoCandidato', candidato._id);
+  };
+
+  const visualizarVaga = (vaga) => {
+    localStorage.setItem('visualisandoVaga', JSON.stringify(vaga));
+  };
+
+  const excluirVaga = (vaga) => {
+    operacoes.remove(vaga.vaga._id);
+    history.push('/');
   };
 
   const montarCards = async () => {
@@ -87,6 +81,14 @@ export default function MinhasVagas(props) {
                   </p>
                 );
               })}
+            </div>
+            <div className="card-action">
+              <a href="#" onClick={() => visualizarVaga(v)}>
+                <Link to="/visualizarEditarVaga">Visualizar vaga</Link>
+              </a>
+              <a href="#" onClick={() => excluirVaga(v)}>
+                Excluir vaga
+              </a>
             </div>
           </div>
         </div>
