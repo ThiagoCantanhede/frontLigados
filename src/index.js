@@ -20,6 +20,8 @@ import VisualizarEditarCurriculo from './components/visualizarEditarCurriculo';
 import VisualizarVaga from './components/visualizarVaga';
 import VisualizarArtigo from './components/visualizarArtigo';
 import VisualizarEditarVaga from './components/visualizarEditarVaga';
+import VisualizarEditarArtigo from './components/visualizarEditarArtigo';
+import MeusArtigos from './components/meusArtigos';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -42,6 +44,11 @@ ReactDOM.render(
       <Route path="/visualizarVaga" component={VisualizarVaga} />
       <Route path="/visualizarArtigo" component={VisualizarArtigo} />
       <Route path="/visualizarEditarVaga" component={VisualizarEditarVaga} />
+      <Route
+        path="/visualizarEditarArtigo"
+        component={VisualizarEditarArtigo}
+      />
+      <Route path="/meusArtigos" component={MeusArtigos} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

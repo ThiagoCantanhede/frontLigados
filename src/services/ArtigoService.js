@@ -24,6 +24,10 @@ const removeAll = () => {
   return http.delete(`/artigo`);
 };
 
+const encontrarArtigosDoAutor = (autor) => {
+  return http.get(`/artigo?usuario=${autor}`);
+};
+
 export default {
   getAll,
   get,
@@ -31,4 +35,5 @@ export default {
   update,
   remove,
   removeAll,
+  encontrarArtigosDoAutor,
 };

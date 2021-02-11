@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import operacoes from '../services/VagasService.js';
+import { useHistory } from 'react-router-dom';
 
 export default function VisualizarEditarVaga(props) {
   const [vaga, setVaga] = useState(null);
@@ -8,6 +9,7 @@ export default function VisualizarEditarVaga(props) {
   const [descricao, setDescricao] = useState('');
   const [competencias, setCompetencias] = useState('');
   const [rendimentos, setRendimentos] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     montarVaga();
@@ -52,6 +54,7 @@ export default function VisualizarEditarVaga(props) {
       usuarioId: retornarIdUsuario(),
     };
     operacoes.update(vaga._id, lvaga);
+    history.push('/');
   };
 
   const retornarIdUsuario = () => {
