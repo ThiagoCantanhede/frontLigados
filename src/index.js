@@ -23,6 +23,8 @@ import VisualizarEditarVaga from './components/visualizarEditarVaga';
 import VisualizarEditarArtigo from './components/visualizarEditarArtigo';
 import MeusArtigos from './components/meusArtigos';
 import Mensagem from './components/mensagem';
+import MinhasMensagens from './components/minhasMensagens';
+import VisualizarMensagem from './components/visualizarMensagem';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -51,6 +53,8 @@ ReactDOM.render(
       />
       <Route path="/meusArtigos" component={MeusArtigos} />
       <Route path="/mensagem" component={Mensagem} />
+      <Route path="/minhasMensagens" component={MinhasMensagens} />
+      <Route path="/visualizarMensagem" component={VisualizarMensagem} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

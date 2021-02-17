@@ -105,6 +105,18 @@ export default function App(props) {
       </div>
 
       <div className="col s12 m4">
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <span className="card-title">
+              <Link to="/minhasMensagens">
+                <span class="white-text">Caixa de entrada</span>
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="col s12 m4">
         <div className="card red darken-1">
           <div className="card-content white-text">
             <span className="card-title">

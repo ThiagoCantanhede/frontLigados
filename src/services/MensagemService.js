@@ -21,7 +21,7 @@ const encontrarMensagemPorAutor = (autor) => {
 };
 
 const encontrarMensagemPorDestinatario = (destinatario) => {
-  return http.get(`/mensagem?destinatario=${destinatario}`);
+  return http.get(`/mensagemPorDestinatario?destinatario=${destinatario}`);
 };
 
 export default {
