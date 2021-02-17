@@ -48,7 +48,7 @@ export default function MinhasVagas(props) {
   };
 
   const abrirCurriculo = (candidato) => {
-    localStorage.setItem('visualisandoCandidato', candidato._id);
+    localStorage.setItem('visualisandoCandidato', JSON.stringify(candidato));
   };
 
   const visualizarVaga = (vaga) => {

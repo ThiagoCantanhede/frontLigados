@@ -33,7 +33,7 @@ export default function ConsultarCurriculos(props) {
               className="secondary-content"
               onClick={() => abrirCurriculo(c)}
             >
-              <Link to="/visualizarEditarCurriculo">Visualizar currículo</Link>
+              <Link to="/candidato">Visualizar currículo</Link>
             </a>
           </li>
         ))}

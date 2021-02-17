@@ -22,6 +22,7 @@ import VisualizarArtigo from './components/visualizarArtigo';
 import VisualizarEditarVaga from './components/visualizarEditarVaga';
 import VisualizarEditarArtigo from './components/visualizarEditarArtigo';
 import MeusArtigos from './components/meusArtigos';
+import Mensagem from './components/mensagem';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -49,6 +50,7 @@ ReactDOM.render(
         component={VisualizarEditarArtigo}
       />
       <Route path="/meusArtigos" component={MeusArtigos} />
+      <Route path="/mensagem" component={Mensagem} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

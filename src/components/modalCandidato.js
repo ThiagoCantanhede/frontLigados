@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function CadastroCurriculo(props) {
   const history = useHistory();
@@ -12,11 +13,18 @@ export default function CadastroCurriculo(props) {
 
   const curriculo = async () => {
     let candidatoId = localStorage.getItem('visualisandoCandidato');
-    const retorno = await operacoes.encontrarCurriculoPorUsuario(candidatoId);
+    candidatoId = JSON.parse(candidatoId);
+    const retorno = await operacoes.encontrarCurriculoPorUsuario(
+      candidatoId._id
+    );
 
     const formacao = retorno.data[0].formacao;
     const competencias = retorno.data[0].competencias;
     const experiencia = retorno.data[0].experienciaProfissional;
+
+    const chamarModalMensagem = () => {
+      history.push('/mensagem');
+    };
 
     return (
       <div className="row container">
@@ -56,6 +64,15 @@ export default function CadastroCurriculo(props) {
             <label className="active" htmlFor="experiencia">
               Experiência profissional
             </label>
+          </div>
+          <div className="input-field col s4"></div>
+          <div className="input-field col s8">
+            <a
+              className="waves-effect waves-light btn "
+              onClick={chamarModalMensagem}
+            >
+              Enviar mensagem
+            </a>
           </div>
         </form>
       </div>
