@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
+import operacoesAuditoria from '../services/AuditoriaService.js';
 import { Link } from 'react-router-dom';
+import tipos from '../tipos.js';
 
 export default function ConsultarVagas(props) {
   const history = useHistory();
@@ -26,6 +28,15 @@ export default function ConsultarVagas(props) {
     return candidato ? true : false;
   };
 
+  const salvarAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = {
+      usuarioId: idCandidato,
+      tipoAcao: tipo.candidatura,
+    };
+    await operacoesAuditoria.create(auditoria);
+  };
+
   const salvarCandidatura = async (v) => {
     retornarIdUsuario();
     if (!(await checarSeUsuarioJaSeCandidatouAVaga(v._id))) {
@@ -35,6 +46,7 @@ export default function ConsultarVagas(props) {
       };
       try {
         await operacaoesCandidatoVaga.create(candidatura);
+        salvarAuditoria();
         alert('Candidatura realizada!');
       } catch (error) {
         console.log(error.message);
