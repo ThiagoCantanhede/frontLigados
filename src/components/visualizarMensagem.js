@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom';
 export default function VisualizarMensagem(props) {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [resposta, setResposta] = useState('');
   const history = useHistory();
+  const [mensagemRecebida, setMensagem] = useState('');
 
   useEffect(() => {
     montarMensagem();
@@ -14,6 +16,7 @@ export default function VisualizarMensagem(props) {
   const montarMensagem = () => {
     let mensagem = localStorage.getItem('visualizarMensagem');
     mensagem = JSON.parse(mensagem);
+    setMensagem(mensagem);
     if (titulo === '') setTitulo(mensagem.assunto);
     if (descricao === '') setDescricao(mensagem.mensagem);
   };
@@ -22,6 +25,23 @@ export default function VisualizarMensagem(props) {
     history.push('/minhasMensagens');
   };
 
+  const handleResposta = (event) => {
+    setResposta(event.target.value);
+  };
+
+  const responder = () => {
+    var resp = {
+      destinatarioId: mensagemRecebida.autorId,
+      nomeDestinatario: mensagemRecebida.nomeAutor,
+      autorId: mensagemRecebida.destinatarioId,
+      nomeAutor: mensagemRecebida.nomeDestinatario,
+      assunto: 'Re:' + mensagemRecebida.assunto,
+      mensagem: resposta,
+    };
+
+    operacoes.create(resp);
+    history.push('/minhasMensagens');
+  };
   return (
     <div className="row container">
       <form className="col s12">
@@ -50,6 +70,21 @@ export default function VisualizarMensagem(props) {
             <label className="active" htmlFor="descricao">
               Mensagem
             </label>
+          </div>
+
+          <div className="input-field col s4"></div>
+          <div className="input-field col s8">
+            <textarea
+              id="resposta"
+              onChange={handleResposta}
+              style={{ height: 10 + 'em' }}
+            ></textarea>
+            <label className="active" htmlFor="resposta">
+              Responder
+            </label>
+            <a className="waves-effect waves-light btn" onClick={responder}>
+              Enviar
+            </a>
           </div>
 
           <div className="input-field col s4"></div>
