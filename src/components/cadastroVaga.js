@@ -1,6 +1,8 @@
 import React from 'react';
 import operacoes from '../services/VagasService.js';
 import { useHistory } from 'react-router-dom';
+import salvarAuditoria from '../auditoria.js';
+import tipos from '../tipos.js';
 
 export default function CadastroVaga(props) {
   var titulo = '';
@@ -46,7 +48,14 @@ export default function CadastroVaga(props) {
       usuarioId: retornarIdUsuario(),
     };
     operacoes.create(vaga);
+    salvarNaAuditoria();
     history.push('/');
+  };
+
+  const salvarNaAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(retornarIdUsuario(), tipo.cadastroVaga);
   };
 
   const retornarIdUsuario = () => {

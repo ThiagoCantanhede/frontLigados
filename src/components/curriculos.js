@@ -17,7 +17,12 @@ export default function ConsultarCurriculos(props) {
   };
 
   const abrirCurriculo = (curriculo) => {
-    localStorage.setItem('visualisandoCandidato', curriculo.usuarioId);
+    localStorage.setItem('visualisandoCandidato', retornarUsuario());
+  };
+
+  const retornarUsuario = () => {
+    let usuario = localStorage.getItem('login');
+    return usuario;
   };
 
   const montarCards = async () => {

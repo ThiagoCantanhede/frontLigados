@@ -1,6 +1,8 @@
 import React from 'react';
 import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
+import tipos from '../tipos.js';
+import salvarAuditoria from '../auditoria.js';
 
 export default function CadastroCurriculo(props) {
   var formacao = '';
@@ -31,7 +33,14 @@ export default function CadastroCurriculo(props) {
       usuarioNome: nome,
     };
     operacoes.create(curriculo);
+    salvarNaAuditoria();
     history.push('/');
+  };
+
+  const salvarNaAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(id, tipo.cadastroCurriculo);
   };
 
   const retornarIdNomeUsuario = () => {

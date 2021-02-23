@@ -1,6 +1,8 @@
 import React from 'react';
 import operacoes from '../services/ArtigoService.js';
 import { useHistory } from 'react-router-dom';
+import tipos from '../tipos.js';
+import salvarAuditoria from '../auditoria.js';
 
 export default function CadastroArtigo(props) {
   var titulo = '';
@@ -26,7 +28,14 @@ export default function CadastroArtigo(props) {
       autorNome: nome,
     };
     operacoes.create(artigo);
+    salvarNaAuditoria();
     history.push('/');
+  };
+
+  const salvarNaAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(id, tipo.cadastroArtigo);
   };
 
   const retornarIdNomeUsuario = () => {

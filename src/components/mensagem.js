@@ -1,6 +1,8 @@
 import React from 'react';
 import operacoes from '../services/MensagemService.js';
 import { useHistory } from 'react-router-dom';
+import tipos from '../tipos.js';
+import salvarAuditoria from '../auditoria.js';
 
 export default function Mensagem(props) {
   var titulo = '';
@@ -29,9 +31,15 @@ export default function Mensagem(props) {
       assunto: titulo,
       mensagem: descricao,
     };
-
     operacoes.create(mensagem);
+    salvarNaAuditoria();
     history.push('/candidato');
+  };
+
+  const salvarNaAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(id, tipo.mensagem);
   };
 
   const retornarIdNomeUsuario = () => {
