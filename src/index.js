@@ -25,6 +25,7 @@ import MeusArtigos from './components/meusArtigos';
 import Mensagem from './components/mensagem';
 import MinhasMensagens from './components/minhasMensagens';
 import VisualizarMensagem from './components/visualizarMensagem';
+import CadastroVagasMestreDetalhe from './components/cadastroVagasMestreDetalhe';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -38,7 +39,7 @@ ReactDOM.render(
       <Route path="/escreverArtigo" component={CadastroArtigo} />
       <Route path="/consultarArtigos" component={ConsultarArtigos} />
       <Route path="/login" component={Login} />
-      <Route path="/minhasVagas" component={MinhasVagas} />
+      <Route path="/minhasVagas" component={CadastroVagasMestreDetalhe} />
       <Route path="/candidato" component={Candidato} />
       <Route
         path="/visualizarEditarCurriculo"
