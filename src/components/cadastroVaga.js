@@ -49,7 +49,7 @@ export default function CadastroVaga(props) {
     };
     operacoes.create(vaga);
     salvarNaAuditoria();
-    history.push('/');
+    history.push('/minhasVagas');
   };
 
   const salvarNaAuditoria = async () => {

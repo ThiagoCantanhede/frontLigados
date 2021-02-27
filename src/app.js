@@ -36,20 +36,8 @@ export default function App(props) {
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <span className="card-title">
-              <Link to="/vaga">
-                <span class="white-text">Cadastrar vaga</span>
-              </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="col s12 m4">
-        <div className="card blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">
               <Link to="/minhasVagas">
-                <span class="white-text">Minhas vagas cadastradas</span>
+                <span class="white-text">Manutenção de vaga</span>
               </Link>
             </span>
           </div>

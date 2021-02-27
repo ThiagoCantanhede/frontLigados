@@ -54,7 +54,7 @@ export default function VisualizarEditarVaga(props) {
       usuarioId: retornarIdUsuario(),
     };
     operacoes.update(vaga._id, lvaga);
-    history.push('/');
+    history.push('/minhasVagas');
   };
 
   const retornarIdUsuario = () => {
