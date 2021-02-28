@@ -1,15 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function ComponenteDetalhesVaga(props) {
-  var titulo = '';
-  var descricao = '';
-  var competencias = '';
-  var rendimentos = '';
-  var beneficios = '';
-  var dataLimite = '';
   const vaga = props.vaga;
-  const history = useHistory();
+  console.log(vaga);
+  const abrirCurriculo = (candidato) => {
+    localStorage.setItem('visualisandoCandidato', JSON.stringify(candidato));
+  };
 
   return (
     <form className="col s12">
@@ -17,7 +14,7 @@ export default function ComponenteDetalhesVaga(props) {
         <input
           id="titulo"
           type="text"
-          value={vaga ? vaga.titulo : ''}
+          value={vaga ? vaga.vaga.titulo : ''}
           className="validate"
         ></input>
         <label className="active" htmlFor="titulo">
@@ -28,7 +25,7 @@ export default function ComponenteDetalhesVaga(props) {
       <div className="input-field col s12">
         <textarea
           id="descricao"
-          value={vaga ? vaga.descricao : ''}
+          value={vaga ? vaga.vaga.descricao : ''}
           style={{ height: 7 + 'em' }}
         ></textarea>
         <label className="active" htmlFor="descricao">
@@ -39,7 +36,7 @@ export default function ComponenteDetalhesVaga(props) {
       <div className="input-field col s12">
         <textarea
           id="competencias"
-          value={vaga ? vaga.competencias : ''}
+          value={vaga ? vaga.vaga.competencias : ''}
           style={{ height: 7 + 'em' }}
         ></textarea>
         <label className="active" htmlFor="competencias">
@@ -51,7 +48,7 @@ export default function ComponenteDetalhesVaga(props) {
         <input
           id="rendimentos"
           type="text"
-          value={vaga ? vaga.rendimentos : ''}
+          value={vaga ? vaga.vaga.rendimentos : ''}
           className="validate"
         ></input>
         <label className="active"> Rendimentos</label>
@@ -60,12 +57,30 @@ export default function ComponenteDetalhesVaga(props) {
       <div className="input-field col s12">
         <textarea
           id="beneficios"
-          value={vaga ? vaga.beneficios : ''}
+          value={vaga ? vaga.vaga.beneficios : ''}
           style={{ height: 7 + 'em' }}
         ></textarea>
         <label className="active" htmlFor="Beneficios">
           Beneficios
         </label>
+      </div>
+      <div className="input-field col s12">
+        <span>CANDIDATOS:</span>
+        {vaga
+          ? vaga.candidatos
+            ? vaga.candidatos.map((c) => {
+                return (
+                  <p>
+                    <a href="#" onClick={() => abrirCurriculo(c)}>
+                      <Link to="/candidato">
+                        {c.nome} - {c.email}
+                      </Link>
+                    </a>
+                  </p>
+                );
+              })
+            : ''
+          : ''}
       </div>
     </form>
   );

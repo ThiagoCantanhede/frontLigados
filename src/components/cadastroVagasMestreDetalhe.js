@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 import operacaoesUsuarios from '../services/UsuariosService.js';
-import { Link } from 'react-router-dom';
+
 import ComponenteDetalhesVaga from './componenteDetalhesVaga';
 
 export default function CadastroVagasMestreDetalhe(props) {
@@ -48,10 +48,6 @@ export default function CadastroVagasMestreDetalhe(props) {
     idCandidato = usuario._id;
   };
 
-  const abrirCurriculo = (candidato) => {
-    localStorage.setItem('visualisandoCandidato', JSON.stringify(candidato));
-  };
-
   const visualizarVaga = async (vaga) => {
     localStorage.setItem('visualisandoVaga', JSON.stringify(vaga));
     history.push('/visualizarEditarVaga');
@@ -87,7 +83,7 @@ export default function CadastroVagasMestreDetalhe(props) {
                 <a
                   key={i}
                   className="collection-item"
-                  onClick={() => preencherObjetoVaga(v.vaga)}
+                  onClick={() => preencherObjetoVaga(v)}
                 >
                   <span
                     class="new badge"
