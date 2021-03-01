@@ -26,7 +26,7 @@ import Mensagem from './components/mensagem';
 import MinhasMensagens from './components/minhasMensagens';
 import VisualizarMensagem from './components/visualizarMensagem';
 import CadastroVagasMestreDetalhe from './components/cadastroVagasMestreDetalhe';
-import GraficoCurriculo from './components/graficos';
+import GraficoCurriculo from './components/graficosCurriculo';
 
 ReactDOM.render(
   <BrowserRouter>
