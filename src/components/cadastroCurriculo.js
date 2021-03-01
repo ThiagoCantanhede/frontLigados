@@ -1,30 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
 import tipos from '../tipos.js';
 import salvarAuditoria from '../auditoria.js';
 
 export default function CadastroCurriculo(props) {
-  var formacao = '';
-  var competencias = '';
-  var experienciaProfissional = '';
+  const [formacao, setFormacao] = useState('');
+  const [competencias, setCompetencias] = useState('');
+  const [experienciaProfissional, setExperienciaProfissional] = useState('');
   var nome = '';
   var id = '';
+  var idCurriculo = null;
   const history = useHistory();
 
-  const setFormacao = (event) => {
-    formacao = event.target.value;
-  };
-  const setCompetencias = (event) => {
-    competencias = event.target.value;
-  };
-
-  const setExperienciaProfissional = (event) => {
-    experienciaProfissional = event.target.value;
-  };
+  useEffect(() => {
+    curriculo();
+  }, [formacao, competencias, experienciaProfissional]);
 
   const salvarCurriculo = () => {
-    retornarIdNomeUsuario();
     var curriculo = {
       formacao: formacao,
       competencias: competencias,
@@ -32,7 +25,10 @@ export default function CadastroCurriculo(props) {
       usuarioId: id,
       usuarioNome: nome,
     };
-    operacoes.create(curriculo);
+
+    idCurriculo
+      ? operacoes.update(idCurriculo, curriculo)
+      : operacoes.create(curriculo);
     salvarNaAuditoria();
     history.push('/');
   };
@@ -50,6 +46,30 @@ export default function CadastroCurriculo(props) {
     nome = usuario.nome;
   };
 
+  const curriculo = async () => {
+    retornarIdNomeUsuario();
+    const retorno = await operacoes.encontrarCurriculoPorUsuario(id);
+    if (retorno.data[0]) {
+      idCurriculo = retorno.data[0]._id ? retorno.data[0]._id : null;
+      if (formacao === '') setFormacao(retorno.data[0].formacao);
+      if (competencias === '') setCompetencias(retorno.data[0].competencias);
+      if (experienciaProfissional === '')
+        setExperienciaProfissional(retorno.data[0].experienciaProfissional);
+    }
+  };
+
+  const handle = (event) => {
+    if (event.target.id == 'formacao') {
+      setFormacao(event.target.value);
+    }
+    if (event.target.id == 'competencias') {
+      setCompetencias(event.target.value);
+    }
+    if (event.target.id == 'experiencia') {
+      setExperienciaProfissional(event.target.value);
+    }
+  };
+
   return (
     <div className="row container">
       <form className="col s12">
@@ -57,7 +77,8 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="formacao"
-            onChange={setFormacao}
+            onChange={handle}
+            value={formacao}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="formacao">
@@ -68,7 +89,8 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="competencias"
-            onChange={setCompetencias}
+            onChange={handle}
+            value={competencias}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="competencias">
@@ -79,7 +101,8 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <textarea
             id="experiencia"
-            onChange={setExperienciaProfissional}
+            onChange={handle}
+            value={experienciaProfissional}
             style={{ height: 7 + 'em' }}
           ></textarea>
           <label className="active" htmlFor="experiencia">

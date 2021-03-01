@@ -13,7 +13,7 @@ export default function App(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/curriculo">
-                <span class="white-text">Cadastrar currículo</span>
+                <span class="white-text">Cadastrar / Editar meu currículo</span>
               </Link>
             </span>
           </div>
