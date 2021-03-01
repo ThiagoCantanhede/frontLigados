@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/CurriculoService.js';
 import { Link } from 'react-router-dom';
+import operacaoesUsuarios from '../services/UsuariosService.js';
 
 export default function ConsultarCurriculos(props) {
   const history = useHistory();
@@ -16,8 +17,15 @@ export default function ConsultarCurriculos(props) {
     return curriculos.data;
   };
 
-  const abrirCurriculo = (curriculo) => {
-    localStorage.setItem('visualisandoCandidato', retornarUsuario());
+  const abrirCurriculo = async (curriculo) => {
+    let usu = await retornarUsuarioCurriculo(curriculo.usuarioId);
+    localStorage.setItem('visualisandoCandidato', JSON.stringify(usu.data));
+    history.push('/candidato');
+  };
+
+  const retornarUsuarioCurriculo = async (id) => {
+    const candidato = await operacaoesUsuarios.get(id);
+    return candidato;
   };
 
   const retornarUsuario = () => {
@@ -38,7 +46,7 @@ export default function ConsultarCurriculos(props) {
               className="secondary-content"
               onClick={() => abrirCurriculo(c)}
             >
-              <Link to="/candidato">Visualizar currículo</Link>
+              Visualizar currículo
             </a>
           </li>
         ))}
