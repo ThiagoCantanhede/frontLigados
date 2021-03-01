@@ -37,7 +37,7 @@ export default function App(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/minhasVagas">
-                <span class="white-text">Manutenção de vaga</span>
+                <span class="white-text">Manutenção de vagas</span>
               </Link>
             </span>
           </div>

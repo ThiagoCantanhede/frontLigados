@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import salvarAuditoria from '../auditoria.js';
+import tipos from '../tipos.js';
 
 export default function CadastroCurriculo(props) {
   const history = useHistory();
@@ -11,12 +12,19 @@ export default function CadastroCurriculo(props) {
     montarCurriculo(await curriculo());
   }, []);
 
+  const salvarNaAuditoria = async (id) => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(id, tipo.visualizacaoCurriculo);
+  };
   const curriculo = async () => {
     let candidatoId = localStorage.getItem('visualisandoCandidato');
     candidatoId = JSON.parse(candidatoId);
     const retorno = await operacoes.encontrarCurriculoPorUsuario(
       candidatoId._id
     );
+
+    await salvarNaAuditoria(candidatoId._id);
 
     const formacao = retorno.data[0].formacao;
     const competencias = retorno.data[0].competencias;

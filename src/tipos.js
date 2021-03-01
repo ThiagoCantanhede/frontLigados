@@ -4,4 +4,5 @@ export default class tipos {
   cadastroArtigo = 'cadastroArtigo';
   candidatura = 'candidatura';
   mensagem = 'mensagemEnviada';
+  visualizacaoCurriculo = 'visualizacaoCurriculo';
 }
