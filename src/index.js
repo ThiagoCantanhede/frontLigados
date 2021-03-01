@@ -26,7 +26,7 @@ import Mensagem from './components/mensagem';
 import MinhasMensagens from './components/minhasMensagens';
 import VisualizarMensagem from './components/visualizarMensagem';
 import CadastroVagasMestreDetalhe from './components/cadastroVagasMestreDetalhe';
-import Grafico from './components/graficos';
+import GraficoCurriculo from './components/graficos';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -57,7 +57,7 @@ ReactDOM.render(
       <Route path="/mensagem" component={Mensagem} />
       <Route path="/minhasMensagens" component={MinhasMensagens} />
       <Route path="/visualizarMensagem" component={VisualizarMensagem} />
-      <Route path="/grafico" component={Grafico} />
+      <Route path="/graficoCurriculo" component={GraficoCurriculo} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

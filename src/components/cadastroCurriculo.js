@@ -70,6 +70,10 @@ export default function CadastroCurriculo(props) {
     }
   };
 
+  const abrirGrafico = () => {
+    history.push('/graficoCurriculo');
+  };
+
   return (
     <div className="row container">
       <form className="col s12">
@@ -113,6 +117,11 @@ export default function CadastroCurriculo(props) {
         <div className="input-field col s12">
           <a className="waves-effect waves-light btn" onClick={salvarCurriculo}>
             Salvar
+          </a>
+        </div>
+        <div className="input-field col s12">
+          <a className="waves-effect waves-light btn" onClick={abrirGrafico}>
+            Visualizar estatistica do currículo
           </a>
         </div>
       </form>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'react-google-charts';
 
-export default function Grafico(props) {
+export default function GraficoCurriculo(props) {
   const data = [
     ['Year', 'Visitations', { role: 'style' }],
     ['2010', 10, 'color: gray'],
