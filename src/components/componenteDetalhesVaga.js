@@ -66,21 +66,25 @@ export default function ComponenteDetalhesVaga(props) {
       </div>
       <div className="input-field col s12">
         <span>CANDIDATOS:</span>
-        {vaga
-          ? vaga.candidatos
-            ? vaga.candidatos.map((c) => {
-                return (
-                  <p>
-                    <a href="#" onClick={() => abrirCurriculo(c)}>
-                      <Link to="/candidato">
-                        {c.nome} - {c.email}
-                      </Link>
-                    </a>
-                  </p>
-                );
-              })
-            : ''
-          : ''}
+        {vaga ? (
+          vaga.candidatos ? (
+            vaga.candidatos.map((c) => {
+              return (
+                <p>
+                  <a href="#" onClick={() => abrirCurriculo(c)}>
+                    <Link to="/candidato">
+                      {c.nome} - {c.email}
+                    </Link>
+                  </a>
+                </p>
+              );
+            })
+          ) : (
+            <p></p>
+          )
+        ) : (
+          ''
+        )}
       </div>
     </form>
   );

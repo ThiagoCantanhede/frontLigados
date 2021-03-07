@@ -9,14 +9,17 @@ import salvarAuditoria from '../auditoria.js';
 export default function ConsultarVagas(props) {
   const history = useHistory();
   const [cardsVagasAnunciadas, montarCard] = useState([]);
+  const [codigoBusca, setCodigoBusca] = useState(null);
   let idCandidato = null;
 
   useEffect(async () => {
     montarCard(await montarCards());
-  }, []);
+  }, [cardsVagasAnunciadas]);
 
   const retornarVagas = async () => {
-    const vagas = await operacoes.getAll();
+    const vagas = codigoBusca
+      ? await operacoes.encontrarVagaPorCodigo(codigoBusca)
+      : await operacoes.getAll();
     return vagas.data;
   };
 
@@ -63,29 +66,60 @@ export default function ConsultarVagas(props) {
     localStorage.setItem('visualisandoVaga', JSON.stringify(vaga));
   };
 
+  const buscarVaga = async () => {
+    setCodigoBusca(document.getElementById('pesquisa').value);
+  };
+
+  const restaurar = () => {
+    document.getElementById('pesquisa').value = null;
+    setCodigoBusca(null);
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
-    const teste = vagas.map((v, i) => {
-      return (
-        <div key={i} className="col s12 m4">
-          <div className="card blue-grey darken-1">
-            <div className="card-content white-text">
-              <span className="card-title">{v.titulo}</span>
-              <p>{v.descricao}</p>
-            </div>
-            <div className="card-action">
-              <a href="#" onClick={() => salvarCandidatura(v)}>
-                candidatar-se
-              </a>
-              <a href="#" onClick={() => visualizarVaga(v)}>
-                <Link to="/visualizarVaga">Visualizar vaga</Link>
-              </a>
-            </div>
+    return (
+      <div>
+        <div className="row container col s12">
+          <div className="row container col s4">
+            <label className="active" htmlFor="titulo">
+              Pesquisar código
+            </label>
+            <input id="pesquisa" type="text" className="validate"></input>
+          </div>
+          <div className="input-field col s1">
+            <a className="blue-grey darken-1 btn" onClick={buscarVaga}>
+              Buscar
+            </a>
+          </div>
+          <div className="input-field col s4">
+            <a className="blue-grey darken-1 btn" onClick={restaurar}>
+              Restaurar padrões
+            </a>
           </div>
         </div>
-      );
-    });
-    return teste;
+        <div className="row container col s12">
+          {vagas.map((v, i) => (
+            <div key={i} className="col s12 m4">
+              <div className="card blue-grey darken-1">
+                <div className="card-content white-text">
+                  <span className="card-title">{v.titulo}</span>
+                  <p>Código: {v.codigo}</p>
+                  <p>Descrição: {v.descricao}</p>
+                </div>
+                <div className="card-action">
+                  <a href="#" onClick={() => salvarCandidatura(v)}>
+                    candidatar-se
+                  </a>
+                  <a href="#" onClick={() => visualizarVaga(v)}>
+                    <Link to="/visualizarVaga">Visualizar vaga</Link>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   return <div className="row container">{cardsVagasAnunciadas}</div>;

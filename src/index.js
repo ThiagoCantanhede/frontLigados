@@ -14,7 +14,6 @@ import App from './app';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RotaPrivada from './rotaPrivada';
 import ConsultarCurriculos from './components/curriculos';
-import MinhasVagas from './components/minhasVagas';
 import Candidato from './components/modalCandidato';
 import VisualizarEditarCurriculo from './components/visualizarEditarCurriculo';
 import VisualizarVaga from './components/visualizarVaga';

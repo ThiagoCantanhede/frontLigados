@@ -28,6 +28,10 @@ const encontrarVagasDoRecrutador = (id) => {
   return http.get(`/vaga?usuario=${id}`);
 };
 
+const encontrarVagaPorCodigo = (codigo) => {
+  return http.get(`/encontrarVagaPorCodigo?codigo=${codigo}`);
+};
+
 export default {
   getAll,
   get,
@@ -36,4 +40,5 @@ export default {
   remove,
   removeAll,
   encontrarVagasDoRecrutador,
+  encontrarVagaPorCodigo,
 };

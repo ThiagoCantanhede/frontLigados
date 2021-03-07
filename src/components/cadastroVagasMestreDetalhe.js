@@ -22,9 +22,10 @@ export default function CadastroVagasMestreDetalhe(props) {
     const vagas = await operacoes.encontrarVagasDoRecrutador(idCandidato);
     const vagasXCandidatos = await operacaoesCandidatoVaga.getAll();
     const candidatos = await operacaoesUsuarios.getAll();
-    const cand = [];
+    let cand = [];
 
     vagas.data.map((v) => {
+      cand = [];
       vagasXCandidatos.data.map((vc) => {
         candidatos.data.map((c) => {
           if (vc.vagaId === v._id && vc.usuarioId === c._id) {
