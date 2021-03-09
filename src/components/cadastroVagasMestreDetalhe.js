@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import operacoes from '../services/VagasService.js';
 import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 import operacaoesUsuarios from '../services/UsuariosService.js';
-
 import ComponenteDetalhesVaga from './componenteDetalhesVaga';
+import { jsPDF } from 'jspdf';
 
 export default function CadastroVagasMestreDetalhe(props) {
   const history = useHistory();
@@ -65,6 +65,16 @@ export default function CadastroVagasMestreDetalhe(props) {
     montarCard(await montarCards());
   };
 
+  const exportarPDF = (vaga) => {
+    const doc = new jsPDF();
+    doc.text('TÍTULO: ' + vaga.titulo, 10, 10);
+    doc.text('DESCRIÇÃO: ' + vaga.descricao, 10, 20);
+    doc.text('REQUISITOS: ' + vaga.competencias, 10, 30);
+    doc.text('RENDIMENTOS: ' + vaga.rendimentos, 10, 40);
+    doc.text('BENEFÍCIOS: ' + vaga.beneficios, 10, 50);
+    doc.save('vaga.pdf');
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
     return (
@@ -95,6 +105,11 @@ export default function CadastroVagasMestreDetalhe(props) {
                     class="new badge"
                     data-badge-caption="Editar"
                     onClick={() => visualizarVaga(v)}
+                  ></span>
+                  <span
+                    class="new badge"
+                    data-badge-caption="PDF"
+                    onClick={() => exportarPDF(v.vaga)}
                   ></span>
                   {v.vaga.titulo}
                 </a>

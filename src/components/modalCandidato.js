@@ -3,6 +3,7 @@ import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
 import salvarAuditoria from '../auditoria.js';
 import tipos from '../tipos.js';
+import { jsPDF } from 'jspdf';
 
 export default function CadastroCurriculo(props) {
   const history = useHistory();
@@ -32,6 +33,16 @@ export default function CadastroCurriculo(props) {
 
     const chamarModalMensagem = () => {
       history.push('/mensagem');
+    };
+
+    const exportarPDF = () => {
+      const doc = new jsPDF();
+      doc.text('NOME: ' + retorno.data[0].usuarioNome, 10, 10);
+      doc.text('FORMAÇÃO: ' + formacao, 10, 20);
+      doc.text('COMPETÊNCIAS: ' + competencias, 10, 30);
+      doc.text('EXPERIÊNCIA PROFISSIONAL: ' + experiencia, 10, 40);
+
+      doc.save('currículo.pdf');
     };
 
     return (
@@ -73,13 +84,17 @@ export default function CadastroCurriculo(props) {
               Experiência profissional
             </label>
           </div>
-          <div className="input-field col s4"></div>
-          <div className="input-field col s8">
+          <div className="input-field col s3">
             <a
               className="waves-effect waves-light btn "
               onClick={chamarModalMensagem}
             >
               Enviar mensagem
+            </a>
+          </div>
+          <div className="input-field col s5">
+            <a className="waves-effect waves-light btn" onClick={exportarPDF}>
+              Exportar para PDF
             </a>
           </div>
         </form>

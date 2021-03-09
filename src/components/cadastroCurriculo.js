@@ -3,6 +3,7 @@ import operacoes from '../services/CurriculoService.js';
 import { useHistory } from 'react-router-dom';
 import tipos from '../tipos.js';
 import salvarAuditoria from '../auditoria.js';
+import { jsPDF } from 'jspdf';
 
 export default function CadastroCurriculo(props) {
   const [formacao, setFormacao] = useState('');
@@ -75,6 +76,16 @@ export default function CadastroCurriculo(props) {
     history.push('/graficoCurriculo');
   };
 
+  const exportarPDF = () => {
+    const doc = new jsPDF();
+    doc.text('NOME: ' + nome, 10, 10);
+    doc.text('FORMAÇÃO: ' + formacao, 10, 20);
+    doc.text('COMPETÊNCIAS: ' + competencias, 10, 30);
+    doc.text('EXPERIÊNCIA PROFISSIONAL: ' + experienciaProfissional, 10, 40);
+
+    doc.save('currículo.pdf');
+  };
+
   return (
     <div className="row container">
       <form className="col s12">
@@ -115,12 +126,17 @@ export default function CadastroCurriculo(props) {
           </label>
         </div>
 
-        <div className="input-field col s12">
+        <div className="input-field col s1">
           <a className="waves-effect waves-light btn" onClick={salvarCurriculo}>
             Salvar
           </a>
         </div>
-        <div className="input-field col s12">
+        <div className="input-field col s2">
+          <a className="waves-effect waves-light btn" onClick={exportarPDF}>
+            Exportar para PDF
+          </a>
+        </div>
+        <div className="input-field col s5">
           <a className="waves-effect waves-light btn" onClick={abrirGrafico}>
             Visualizar estatistica do currículo
           </a>
