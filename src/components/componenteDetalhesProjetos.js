@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function ComponenteDetalhesContato(props) {
-  const contato = props.contato;
+export default function ComponenteDetalhesProjeto(props) {
+  const projeto = props.projeto;
 
   return (
     <form className="col s12">
@@ -9,7 +9,7 @@ export default function ComponenteDetalhesContato(props) {
         <input
           id="nome"
           type="text"
-          value={contato ? contato.nome : ''}
+          value={projeto ? projeto.nome : ''}
           className="validate"
         ></input>
         <label className="active" htmlFor="nome">
@@ -18,24 +18,24 @@ export default function ComponenteDetalhesContato(props) {
       </div>
 
       <div className="input-field col s12">
-        <input
-          id="email"
-          value={contato ? contato.email : ''}
-          className="validate"
-        ></input>
-        <label className="active" htmlFor="email">
-          e-mail
+        <textarea
+          id="descricao"
+          value={projeto ? projeto.descricao : ''}
+          style={{ height: 7 + 'em' }}
+        ></textarea>
+        <label className="active" htmlFor="descricao">
+          Descrição do projeto
         </label>
       </div>
 
       <div className="input-field col s12">
         <input
-          id="telefone"
-          value={contato ? contato.telefone : ''}
+          id="link"
+          value={projeto ? projeto.link : ''}
           className="validate"
         ></input>
-        <label className="active" htmlFor="telefone">
-          Telefone
+        <label className="active" htmlFor="link">
+          Link
         </label>
       </div>
     </form>

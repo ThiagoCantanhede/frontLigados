@@ -28,6 +28,8 @@ import CadastroVagasMestreDetalhe from './components/cadastroVagasMestreDetalhe'
 import GraficoCurriculo from './components/graficosCurriculo';
 import CadastroContatosMestreDetalhe from './components/cadastroContatosMestreDetalhe';
 import CadastrarEditarContato from './components/cadastroContato';
+import CadastrarEditarProjeto from './components/cadastroProjeto';
+import CadastroProjetosMestreDetalhe from './components/cadastroProjetosMestreDetalhe';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -61,6 +63,8 @@ ReactDOM.render(
       <Route path="/graficoCurriculo" component={GraficoCurriculo} />
       <Route path="/contato" component={CadastrarEditarContato} />
       <Route path="/meusContatos" component={CadastroContatosMestreDetalhe} />
+      <Route path="/projeto" component={CadastrarEditarProjeto} />
+      <Route path="/meusProjetos" component={CadastroProjetosMestreDetalhe} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

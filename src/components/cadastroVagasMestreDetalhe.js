@@ -61,6 +61,7 @@ export default function CadastroVagasMestreDetalhe(props) {
   };
 
   const novaVaga = async () => {
+    localStorage.removeItem('visualisandoVaga');
     history.push('/vaga');
     montarCard(await montarCards());
   };

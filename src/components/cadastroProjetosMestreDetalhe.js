@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import operacoes from '../services/ContatosService.js';
-import ComponenteDetalhesContato from './componenteDetalhesContato';
+import operacoes from '../services/ProjetosService.js';
+import ComponenteDetalhesProjeto from './componenteDetalhesProjetos';
 import { jsPDF } from 'jspdf';
 
-export default function CadastroContatosMestreDetalhe(props) {
+export default function CadastroProjetosMestreDetalhe(props) {
   const history = useHistory();
-  const [contatosCadastrados, montarCard] = useState([]);
-  const [objetoContato, preencherObjetoContato] = useState(null);
+  const [projetosCadastrados, montarCard] = useState([]);
+  const [objetoProjeto, preencherObjetoContato] = useState(null);
   let idUsuario = null;
 
   useEffect(async () => {
     montarCard(await montarCards());
-  }, [objetoContato, contatosCadastrados]);
+  }, [objetoProjeto, projetosCadastrados]);
 
-  const retornarContatos = async () => {
+  const retornarProjetos = async () => {
     retornarIdUsuario();
-    const contatos = await operacoes.getAll();
-    const arrayContatos = [];
-    contatos.data.map((c) => {
+    const projetos = await operacoes.getAll();
+    const arrayProjetos = [];
+    projetos.data.map((c) => {
       if (c.usuarioId === idUsuario) {
-        arrayContatos.push(c);
+        arrayProjetos.push(c);
       }
     });
-    return arrayContatos;
+    return arrayProjetos;
   };
 
   const retornarIdUsuario = () => {
@@ -32,79 +32,79 @@ export default function CadastroContatosMestreDetalhe(props) {
     idUsuario = usuario._id;
   };
 
-  const visualizarContato = async (contato) => {
-    localStorage.setItem('visualisandoContato', JSON.stringify(contato));
-    history.push('/contato');
+  const visualizarProjeto = async (projeto) => {
+    localStorage.setItem('visualisandoProjeto', JSON.stringify(projeto));
+    history.push('/projeto');
     montarCard(await montarCards());
   };
 
-  const excluirContato = async (contato) => {
-    await operacoes.remove(contato._id);
+  const excluirProjeto = async (projeto) => {
+    await operacoes.remove(projeto._id);
     montarCard(await montarCards());
   };
 
-  const novoContato = async () => {
-    localStorage.removeItem('visualisandoContato');
-    history.push('/contato');
+  const novoProjeto = async () => {
+    localStorage.removeItem('visualisandoProjeto');
+    history.push('/projeto');
     montarCard(await montarCards());
   };
 
-  const exportarPDF = (contato) => {
+  const exportarPDF = (projeto) => {
     const doc = new jsPDF();
-    doc.text('NOME: ' + contato.nome, 10, 10);
-    doc.text('E-MAIL: ' + contato.email, 10, 20);
-    doc.text('TELEFONE: ' + contato.telefone, 10, 30);
-    doc.save('contato.pdf');
+    doc.text('NOME: ' + projeto.nome, 10, 10);
+    doc.text('DESCRIÇÃO: ' + projeto.descricao, 10, 20);
+    doc.text('LINK: ' + projeto.link, 10, 30);
+    doc.save('projeto.pdf');
   };
 
   const montarCards = async () => {
-    const contatos = await retornarContatos();
+    const projetos = await retornarProjetos();
     return (
       <div>
         <div className="row container col s12">
           <div className="col s2">
             <a
               class="btn-floating btn-large waves-effect waves-light"
-              onClick={() => novoContato()}
+              onClick={() => novoProjeto()}
             >
               +
             </a>
           </div>
           <div className="col s5">
             <div className="collection">
-              {contatos.map((c, i) => (
+              {projetos.map((p, i) => (
                 <a
                   key={i}
                   className="collection-item"
-                  onClick={() => preencherObjetoContato(c)}
+                  onClick={() => preencherObjetoContato(p)}
                 >
                   <span
                     class="new badge"
                     data-badge-caption="Excluir"
-                    onClick={() => excluirContato(c)}
+                    onClick={() => excluirProjeto(p)}
                   ></span>
                   <span
                     class="new badge"
                     data-badge-caption="Editar"
-                    onClick={() => visualizarContato(c)}
+                    onClick={() => visualizarProjeto(p)}
                   ></span>
                   <span
                     class="new badge"
                     data-badge-caption="PDF"
-                    onClick={() => exportarPDF(c)}
+                    onClick={() => exportarPDF(p)}
                   ></span>
-                  {c.nome}
+                  {p.nome}
                 </a>
               ))}
             </div>
           </div>
           <div className="col s5">
-            <ComponenteDetalhesContato contato={objetoContato} />
+            <ComponenteDetalhesProjeto projeto={objetoProjeto} />
           </div>
         </div>
       </div>
     );
   };
 
-  return <div className="row container">{contatosCadastrados}</div>;
+  return <div className="row container">{projetosCadastrados}</div>;
 }

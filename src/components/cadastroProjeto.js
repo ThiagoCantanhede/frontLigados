@@ -17,10 +17,10 @@ export default function CadastrarEditarProjeto(props) {
     let lProjeto = localStorage.getItem('visualisandoProjeto');
     lProjeto = JSON.parse(lProjeto);
     if (lProjeto) {
-      setContato(lProjeto);
+      setProjeto(lProjeto);
       if (nome === '') setNome(lProjeto.nome);
       if (descricao === '') setDescricao(lProjeto.descricao);
-      if (linkp === '') setLinkp(lProjeto.linkp);
+      if (linkp === '') setLinkp(lProjeto.link);
     }
   };
 
