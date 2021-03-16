@@ -4,15 +4,11 @@ import operacoesAuditoria from '../services/AuditoriaService.js';
 import tipos from '../tipos.js';
 
 export default function GraficoCurriculo(props) {
+  const [graficoComponente, montarComponente] = useState([]);
+  const [dados, montarDatao] = useState([]);
   var data = [];
   let controle = true;
-
-  // const data = [
-  //   ['Year', 'Visitations', { role: 'style' }],
-  //   ['2010', 10, 'color: blue'],
-  //   ['2011', 14, 'color: blue'],
-  //   ['2012', 3, 'color: blue'],
-  // ];
+  const ano = new Date().getFullYear().toString();
 
   const retornarIdUsuario = () => {
     let usuario = localStorage.getItem('login');
@@ -21,9 +17,12 @@ export default function GraficoCurriculo(props) {
     return usuario._id;
   };
 
+  useEffect(async () => {
+    montarComponente(await montarGrafico());
+  }, [dados]);
+
   const montarGrafico = async () => {
     data.push(['Mês', 'Visualizações', { role: 'style' }]);
-
     const idUsuario = retornarIdUsuario();
 
     const dadosAuditoria = await operacoesAuditoria.retornarAcoesPorUsuario(
@@ -44,7 +43,7 @@ export default function GraficoCurriculo(props) {
     let tipo = new tipos();
 
     dadosAuditoria.data.map(async (da) => {
-      if (tipo.visualizacaoCurriculo === da.tipoAcao) {
+      if (tipo.visualizacaoCurriculo === da.tipoAcao && da.anoAcao === ano) {
         if (da.mesAcao === '1') totJan++;
         if (da.mesAcao === '2') totFev++;
         if (da.mesAcao === '3') totMar++;
@@ -72,20 +71,14 @@ export default function GraficoCurriculo(props) {
     data.push(['Novembro', totNov, 'color: blue']);
     data.push(['Dezembro', totDez, 'color: blue']);
 
-    let recarregou = localStorage.getItem('grafico');
-    if (!recarregou) {
-      localStorage.setItem('grafico', 'recarregou');
-      document.location.reload(true);
-      document.location.reload(true);
-      document.location.reload(true);
-    }
+    montarDatao(data);
+
+    return (
+      <div className="App">
+        <Chart chartType="Bar" width="100%" height="400px" data={data} />
+        Ano atual: {ano}
+      </div>
+    );
   };
-
-  montarGrafico();
-
-  return (
-    <div className="App">
-      <Chart chartType="Bar" width="100%" height="400px" data={data} />
-    </div>
-  );
+  return <div className="row container">{graficoComponente}</div>;
 }
