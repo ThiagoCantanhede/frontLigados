@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
+import { useHistory } from 'react-router-dom';
 
 export default function VisualizarArtigo(props) {
   var titulo = '';
   var descricao = '';
   var nome = '';
   var id = '';
-
+  const history = useHistory();
   const [artigo, montarArtigos] = useState([]);
 
   useEffect(() => {
@@ -23,6 +24,9 @@ export default function VisualizarArtigo(props) {
     doc.text('DESCRIÇÃO: ' + artigo.descricao, 10, 30);
 
     doc.save('artigo.pdf');
+  };
+  const retornar = () => {
+    history.push('/consultarArtigos');
   };
 
   const montarArtigo = () => {
@@ -54,9 +58,16 @@ export default function VisualizarArtigo(props) {
             <label className="active" htmlFor="descricao">
               Descrição
             </label>
-            <a className="waves-effect waves-light btn" onClick={exportarPDF}>
-              Exportar para PDF
-            </a>
+            <div className="input-field col s3">
+              <a className="waves-effect waves-light btn" onClick={exportarPDF}>
+                Exportar para PDF
+              </a>
+            </div>
+            <div className="input-field col s1">
+              <a className="waves-effect waves-light btn" onClick={retornar}>
+                Fechar
+              </a>
+            </div>
           </div>
         </form>
       </div>

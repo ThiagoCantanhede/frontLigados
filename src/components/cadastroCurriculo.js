@@ -31,7 +31,7 @@ export default function CadastroCurriculo(props) {
       ? operacoes.update(idCurriculo, curriculo)
       : operacoes.create(curriculo);
     salvarNaAuditoria();
-    history.push('/');
+    retornar();
   };
 
   const salvarNaAuditoria = async () => {
@@ -41,7 +41,7 @@ export default function CadastroCurriculo(props) {
   };
 
   const retornarIdNomeUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     id = usuario._id;
     nome = usuario.nome;
@@ -84,6 +84,10 @@ export default function CadastroCurriculo(props) {
     doc.text('EXPERIÊNCIA PROFISSIONAL: ' + experienciaProfissional, 10, 40);
 
     doc.save('currículo.pdf');
+  };
+
+  const retornar = () => {
+    history.push('/');
   };
 
   return (
@@ -136,9 +140,14 @@ export default function CadastroCurriculo(props) {
             Exportar para PDF
           </a>
         </div>
-        <div className="input-field col s5">
+        <div className="input-field col s2">
           <a className="waves-effect waves-light btn" onClick={abrirGrafico}>
-            Visualizar estatistica do currículo
+            Exibir estatística
+          </a>
+        </div>
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Cancelar
           </a>
         </div>
       </form>

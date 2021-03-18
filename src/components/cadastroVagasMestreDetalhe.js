@@ -44,7 +44,7 @@ export default function CadastroVagasMestreDetalhe(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     idCandidato = usuario._id;
   };
@@ -76,12 +76,21 @@ export default function CadastroVagasMestreDetalhe(props) {
     doc.save('vaga.pdf');
   };
 
+  const retornar = () => {
+    history.push('/');
+  };
+
   const montarCards = async () => {
     const vagas = await retornarVagas();
     return (
       <div>
         <div className="row container col s12">
-          <div className="col s2">
+          <div className="input-field col s1">
+            <a className="waves-effect waves-light btn" onClick={retornar}>
+              Fechar
+            </a>
+          </div>
+          <div className="col s1">
             <a
               class="btn-floating btn-large waves-effect waves-light"
               onClick={() => novaVaga()}

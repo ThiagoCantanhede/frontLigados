@@ -58,7 +58,7 @@ export default function VisualizarEditarVaga(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario._id;
   };

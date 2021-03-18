@@ -42,7 +42,7 @@ export default function MinhasVagas(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     idCandidato = usuario._id;
   };

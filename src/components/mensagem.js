@@ -43,7 +43,7 @@ export default function Mensagem(props) {
   };
 
   const retornarIdNomeUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     id = usuario._id;
     nome = usuario.nome;

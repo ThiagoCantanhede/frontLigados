@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Chart from 'react-google-charts';
 import operacoesAuditoria from '../services/AuditoriaService.js';
 import tipos from '../tipos.js';
+import { useHistory } from 'react-router-dom';
 
 export default function GraficoCurriculo(props) {
   const [graficoComponente, montarComponente] = useState([]);
@@ -11,7 +12,7 @@ export default function GraficoCurriculo(props) {
   const ano = new Date().getFullYear().toString();
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
 
     return usuario._id;
@@ -20,6 +21,11 @@ export default function GraficoCurriculo(props) {
   useEffect(async () => {
     montarComponente(await montarGrafico());
   }, [dados]);
+
+  const history = useHistory();
+  const retornar = () => {
+    history.push('/curriculo');
+  };
 
   const montarGrafico = async () => {
     data.push(['Mês', 'Visualizações', { role: 'style' }]);
@@ -76,7 +82,12 @@ export default function GraficoCurriculo(props) {
     return (
       <div className="App">
         <Chart chartType="Bar" width="100%" height="400px" data={data} />
-        Ano atual: {ano}
+        <div className="input-field col s12">Ano atual: {ano}</div>
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Fechar
+          </a>
+        </div>
       </div>
     );
   };

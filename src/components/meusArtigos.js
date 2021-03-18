@@ -17,7 +17,7 @@ export default function MeusArtigos(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario._id;
   };
@@ -31,24 +31,36 @@ export default function MeusArtigos(props) {
     history.push('/');
   };
 
+  const retornar = () => {
+    history.push('/');
+  };
+
   const montarGrid = async () => {
     const artigos = await retornarArtigos(retornarIdUsuario());
     return (
-      <ul className="collection">
-        {artigos.map((a) => (
-          <li className="collection-item avatar">
-            <span className="title">Título: {a.titulo}</span>
-            <p>Autor: {a.autorNome}</p>
-            <a href="#" onClick={() => visualizarArtigo(a)}>
-              <Link to="/visualizarEditarArtigo">Ler Artigo</Link>
-            </a>
-            <div></div>
-            <a href="#" onClick={() => excluirArtigo(a)}>
-              Excluir artigo
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="collection">
+          {artigos.map((a) => (
+            <li className="collection-item avatar">
+              <span className="title">Título: {a.titulo}</span>
+              <p>Autor: {a.autorNome}</p>
+              <a href="#" onClick={() => visualizarArtigo(a)}>
+                <Link to="/visualizarEditarArtigo">Ler Artigo</Link>
+              </a>
+              <div></div>
+              <a href="#" onClick={() => excluirArtigo(a)}>
+                Excluir artigo
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Fechar
+          </a>
+        </div>
+      </div>
     );
   };
 

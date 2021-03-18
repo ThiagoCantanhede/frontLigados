@@ -19,7 +19,7 @@ export default function MinhasMensagens(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario._id;
   };
@@ -28,21 +28,32 @@ export default function MinhasMensagens(props) {
     localStorage.setItem('visualizarMensagem', JSON.stringify(mensagem));
   };
 
+  const retornar = () => {
+    history.push('/');
+  };
+
   const montarGrid = async () => {
     const mensagens = await retornarMensagens(retornarIdUsuario());
     return (
-      <ul className="collection">
-        {mensagens.map((m) => (
-          <li className="collection-item avatar">
-            <span className="title">Assunto: {m.assunto}</span>
-            <p>Enviado por: {m.nomeAutor}</p>
-            <a href="#" onClick={() => visualizarMensagem(m)}>
-              <Link to="/visualizarMensagem">Ler mensagem</Link>
-            </a>
-            <div></div>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="collection">
+          {mensagens.map((m) => (
+            <li className="collection-item avatar">
+              <span className="title">Assunto: {m.assunto}</span>
+              <p>Enviado por: {m.nomeAutor}</p>
+              <a href="#" onClick={() => visualizarMensagem(m)}>
+                <Link to="/visualizarMensagem">Ler mensagem</Link>
+              </a>
+              <div></div>
+            </li>
+          ))}
+        </ul>
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Fechar
+          </a>
+        </div>
+      </div>
     );
   };
 

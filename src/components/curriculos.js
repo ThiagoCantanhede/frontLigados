@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/CurriculoService.js';
-import { Link } from 'react-router-dom';
 import operacaoesUsuarios from '../services/UsuariosService.js';
 
 export default function ConsultarCurriculos(props) {
@@ -28,29 +27,35 @@ export default function ConsultarCurriculos(props) {
     return candidato;
   };
 
-  const retornarUsuario = () => {
-    let usuario = localStorage.getItem('login');
-    return usuario;
+  const retornar = () => {
+    history.push('/');
   };
 
   const montarCards = async () => {
     const curriculos = await retornarCurriculos();
     return (
-      <ul className="collection">
-        {curriculos.map((c, i) => (
-          <li key={i} className="collection-item avatar">
-            <span className="title">Currículo</span>
-            <p>Nome: {c.usuarioNome}</p>
-            <a
-              href="#!"
-              className="secondary-content"
-              onClick={() => abrirCurriculo(c)}
-            >
-              Visualizar currículo
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="collection">
+          {curriculos.map((c, i) => (
+            <li key={i} className="collection-item avatar">
+              <span className="title">Currículo</span>
+              <p>Nome: {c.usuarioNome}</p>
+              <a
+                href="#!"
+                className="secondary-content"
+                onClick={() => abrirCurriculo(c)}
+              >
+                Visualizar currículo
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Fechar
+          </a>
+        </div>
+      </div>
     );
   };
 

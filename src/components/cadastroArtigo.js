@@ -29,7 +29,7 @@ export default function CadastroArtigo(props) {
     };
     operacoes.create(artigo);
     salvarNaAuditoria();
-    history.push('/');
+    retornar();
   };
 
   const salvarNaAuditoria = async () => {
@@ -39,10 +39,14 @@ export default function CadastroArtigo(props) {
   };
 
   const retornarIdNomeUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     id = usuario._id;
     nome = usuario.nome;
+  };
+
+  const retornar = () => {
+    history.push('/');
   };
 
   return (
@@ -76,9 +80,14 @@ export default function CadastroArtigo(props) {
           </div>
 
           <div className="input-field col s4"></div>
-          <div className="input-field col s8">
+          <div className="input-field col s2">
             <a className="waves-effect waves-light btn" onClick={salvarArtigo}>
               Salvar
+            </a>
+          </div>
+          <div className="input-field col s2">
+            <a className="waves-effect waves-light btn" onClick={retornar}>
+              Cancelar
             </a>
           </div>
         </div>

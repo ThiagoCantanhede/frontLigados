@@ -49,9 +49,13 @@ export default function CadastrarEditarProjeto(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario._id;
+  };
+
+  const retornar = () => {
+    history.push('/meusProjetos');
   };
 
   return (
@@ -101,9 +105,15 @@ export default function CadastrarEditarProjeto(props) {
           </div>
 
           <div className="input-field col s4"></div>
-          <div className="input-field col s8">
+          <div className="input-field col s2">
             <a className="waves-effect waves-light btn" onClick={salvarProjeto}>
               Salvar
+            </a>
+          </div>
+
+          <div className="input-field col s2">
+            <a className="waves-effect waves-light btn" onClick={retornar}>
+              Cancelar
             </a>
           </div>
         </div>

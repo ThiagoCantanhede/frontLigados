@@ -27,7 +27,7 @@ export default function CadastroContatosMestreDetalhe(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     idUsuario = usuario._id;
   };
@@ -57,12 +57,21 @@ export default function CadastroContatosMestreDetalhe(props) {
     doc.save('contato.pdf');
   };
 
+  const retornar = () => {
+    history.push('/');
+  };
+
   const montarCards = async () => {
     const contatos = await retornarContatos();
     return (
       <div>
         <div className="row container col s12">
-          <div className="col s2">
+          <div className="input-field col s1">
+            <a className="waves-effect waves-light btn" onClick={retornar}>
+              Fechar
+            </a>
+          </div>
+          <div className="col s1">
             <a
               class="btn-floating btn-large waves-effect waves-light"
               onClick={() => novoContato()}

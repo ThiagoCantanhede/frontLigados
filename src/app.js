@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 export default function App(props) {
   const removerUsuarioLocalStorage = () => {
-    localStorage.removeItem('login');
+    sessionStorage.removeItem('login');
   };
 
   const retornarTipoUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario.tipo;
   };

@@ -20,20 +20,31 @@ export default function ConsultarArtigos(props) {
     localStorage.setItem('visualisandoArtigo', JSON.stringify(artigo));
   };
 
+  const retornar = () => {
+    history.push('/');
+  };
+
   const montarGrid = async () => {
     const artigos = await retornarArtigos();
     return (
-      <ul className="collection">
-        {artigos.map((a) => (
-          <li className="collection-item avatar">
-            <span className="title">Título: {a.titulo}</span>
-            <p>Autor: {a.autorNome}</p>
-            <a href="#" onClick={() => visualizarArtigo(a)}>
-              <Link to="/visualizarArtigo">Ler Artigo</Link>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="collection">
+          {artigos.map((a) => (
+            <li className="collection-item avatar">
+              <span className="title">Título: {a.titulo}</span>
+              <p>Autor: {a.autorNome}</p>
+              <a href="#" onClick={() => visualizarArtigo(a)}>
+                <Link to="/visualizarArtigo">Ler Artigo</Link>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="input-field col s1">
+          <a className="waves-effect waves-light btn" onClick={retornar}>
+            Fechar
+          </a>
+        </div>
+      </div>
     );
   };
 

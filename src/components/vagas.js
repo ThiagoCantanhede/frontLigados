@@ -57,7 +57,7 @@ export default function ConsultarVagas(props) {
   };
 
   const retornarIdUsuario = () => {
-    let usuario = localStorage.getItem('login');
+    let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     idCandidato = usuario._id;
   };
@@ -73,6 +73,10 @@ export default function ConsultarVagas(props) {
   const restaurar = () => {
     document.getElementById('pesquisa').value = null;
     setCodigoBusca(null);
+  };
+
+  const retornar = () => {
+    history.push('/');
   };
 
   const montarCards = async () => {
@@ -91,9 +95,14 @@ export default function ConsultarVagas(props) {
               Buscar
             </a>
           </div>
-          <div className="input-field col s4">
+          <div className="input-field col s2">
             <a className="blue-grey darken-1 btn" onClick={restaurar}>
               Restaurar padrões
+            </a>
+          </div>
+          <div className="input-field col s1">
+            <a className="blue-grey darken-1 btn" onClick={retornar}>
+              Fechar
             </a>
           </div>
         </div>

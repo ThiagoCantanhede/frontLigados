@@ -19,7 +19,7 @@ export default function Login(props) {
     try {
       const retorno = await operacoes.login(nomeUsuario, senha);
       if (retorno.data) {
-        localStorage.setItem('login', JSON.stringify(retorno.data[0]));
+        sessionStorage.setItem('login', JSON.stringify(retorno.data[0]));
         history.push('/');
       }
     } catch (error) {
