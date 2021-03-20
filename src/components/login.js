@@ -136,14 +136,11 @@ export default function Login(props) {
             </div>
           </div>
 
-          <div className="row">
-            <div className="input-field col s12">
-              <a
-                className="btn waves-effect waves-light col s12"
-                ref={botaoRef}
-              >
-                Login com Google
-              </a>
+          <div className="row mt-5 mb-5">
+            <div className="col-md-4 mt-2 m-auto ">
+              <button className="loginBtn loginBtn--google" ref={botaoRef}>
+                Login with Google
+              </button>
             </div>
           </div>
 
