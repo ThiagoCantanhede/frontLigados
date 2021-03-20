@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/UsuariosService.js';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,8 @@ export default function Login(props) {
   const history = useHistory();
   var nomeUsuario = '';
   var senha = '';
+  var auth2 = null;
+  const botaoRef = useRef(null);
 
   const setNomeUsuario = (event) => {
     nomeUsuario = event.target.value;
@@ -26,6 +28,55 @@ export default function Login(props) {
       alert('Usuário ou senha incorreto.');
     }
   };
+
+  const googleSDK = () => {
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        auth2 = window['gapi'].auth2.init({
+          client_id:
+            '1017028824525-86hhltm1ldcm3allr6g82mbsi0c383h4.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email',
+        });
+        prepareLoginButton();
+      });
+    };
+
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'google-jssdk');
+  };
+
+  const prepareLoginButton = () => {
+    console.log(botaoRef);
+
+    auth2.attachClickHandler(
+      botaoRef,
+      {},
+      (googleUser) => {
+        let profile = googleUser.getBasicProfile();
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        //YOUR CODE HERE
+      },
+      (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      }
+    );
+  };
+
+  googleSDK();
 
   return (
     <div id="login-page" className="row container">
@@ -73,6 +124,29 @@ export default function Login(props) {
               </a>
             </div>
           </div>
+
+          <div className="row">
+            <div className="input-field col s12">
+              <a
+                className="btn waves-effect waves-light col s12"
+                onClick={googleSDK}
+              >
+                start
+              </a>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-field col s12">
+              <a
+                className="btn waves-effect waves-light col s12"
+                ref={botaoRef}
+              >
+                Login com Google
+              </a>
+            </div>
+          </div>
+
           <div className="row">
             <div className="input-field col s6 m6 l6">
               <p className="margin medium-small">
