@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-//import { useHistory } from 'react-router-dom';
-import operacoes from '../services/UsuariosService.js';
-import { Link } from 'react-router-dom';
+// import React, { Component } from 'react';
+// //import { useHistory } from 'react-router-dom';
+// import operacoes from '../services/UsuariosService.js';
+// import { Link } from 'react-router-dom';
 
 // export default function Login(props) {
 //   const history = useHistory();
@@ -162,36 +162,13 @@ import { Link } from 'react-router-dom';
 //   );
 // }
 
+import React, { Component } from 'react';
+
 class GoogleLoginTutorial extends Component {
   state = {
     loginData: {
       Token: '',
-      //history: useHistory(),
-      nomeUsuario: '',
-      senha: '',
     },
-  };
-
-  setNomeUsuario = (event) => {
-    this.setState.nomeUsuario = event.target.value;
-  };
-  setSenha = (event) => {
-    this.setState.senha = event.target.value;
-  };
-
-  login = async () => {
-    try {
-      const retorno = await operacoes.login(
-        this.state.nomeUsuario,
-        this.state.senha
-      );
-      if (retorno.data) {
-        sessionStorage.setItem('login', JSON.stringify(retorno.data[0]));
-        //this.state.history.push('/');
-      }
-    } catch (error) {
-      alert('Usuário ou senha incorreto.');
-    }
   };
 
   componentDidMount() {
@@ -233,7 +210,7 @@ class GoogleLoginTutorial extends Component {
       window['gapi'].load('auth2', () => {
         this.auth2 = window['gapi'].auth2.init({
           client_id:
-            '1017028824525-86hhltm1ldcm3allr6g82mbsi0c383h4.apps.googleusercontent.com',
+            '764194037935-hkai71dhmgitqvsmv7alnj7ivcab3fvt.apps.googleusercontent.com',
           cookiepolicy: 'single_host_origin',
           scope: 'profile email',
         });
@@ -256,77 +233,45 @@ class GoogleLoginTutorial extends Component {
 
   render() {
     return (
-      <div id="login-page" className="row container">
-        <div className="input-field col s12"></div>
-        <div className="input-field col s3"></div>
-        <div className="col s5 z-depth-4 card-panel">
-          <form className="col s12">
-            <div className="row">
-              <div className="input-field col s12 center">
-                <p className="center login-form-text">
-                  Informe o login para o acesso
+      <div className="row mt-5">
+        <div className="col-md-12">
+          <h2 className="text-left">Google Login Demo</h2>
+          <div className="card mt-3">
+            <div className="card-body">
+              {this.state.loginData.ID ? (
+                <p>
+                  <b>Response</b>
+                  <p>
+                    <b>ID:</b>
+                    {this.state.loginData.ID}
+                  </p>
+                  <p>
+                    <b>Name:</b>
+                    {this.state.loginData.Name}
+                  </p>
+                  <p>
+                    <b>Email:</b>
+                    {this.state.loginData.Email}
+                  </p>
+                  <p>
+                    <b>Image:</b>
+                    {this.state.loginData.Image}
+                  </p>
                 </p>
-              </div>
-            </div>
-            <div className="row margin">
-              <div className="input-field col s11">
-                <i className="mdi-social-person-outline prefix"></i>
-                <input
-                  id="username"
-                  type="text"
-                  onChange={this.setNomeUsuario}
-                ></input>
-                <label htmlFor="username" className="active">
-                  Nome de usuário
-                </label>
-              </div>
-            </div>
-            <div className="row margin">
-              <div className="input-field col s11">
-                <i className="mdi-action-lock-outline prefix"></i>
-                <input
-                  id="password"
-                  type="password"
-                  onChange={this.setSenha}
-                ></input>
-                <label html="password" className="active">
-                  senha
-                </label>
-              </div>
-            </div>
+              ) : null}
 
-            <div className="row">
-              <div className="input-field col s12">
-                <a
-                  className="btn waves-effect waves-light col s12"
-                  onClick={this.login}
-                >
-                  Login
-                </a>
+              <div className="row mt-5 mb-5">
+                <div className="col-md-4 mt-2 m-auto ">
+                  <button
+                    className="loginBtn loginBtn--google"
+                    ref="googleLoginBtn"
+                  >
+                    Login with Google
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div className="row mt-5 mb-5">
-              <div className="col-md-4 mt-2 m-auto ">
-                <button
-                  className="loginBtn loginBtn--google"
-                  ref="googleLoginBtn"
-                >
-                  Login with Google
-                </button>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="input-field col s6 m6 l6">
-                <p className="margin medium-small">
-                  <a href="page-register.html">
-                    <Link to="/cadastro">Cadastrar novo usuário</Link>
-                  </a>
-                </p>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     );
