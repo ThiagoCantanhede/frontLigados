@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function App(props) {
+  const history = useHistory();
   const removerUsuarioLocalStorage = () => {
     sessionStorage.removeItem('login');
   };
@@ -11,6 +13,14 @@ export default function App(props) {
     usuario = JSON.parse(usuario);
     return usuario.tipo;
   };
+
+  useEffect(async () => {
+    let usuario = sessionStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    if (!usuario.tipo) {
+      history.push('/finalUsuario');
+    }
+  }, []);
 
   return (
     <div className="row container">

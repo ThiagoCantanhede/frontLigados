@@ -30,7 +30,8 @@ import CadastroContatosMestreDetalhe from './components/cadastroContatosMestreDe
 import CadastrarEditarContato from './components/cadastroContato';
 import CadastrarEditarProjeto from './components/cadastroProjeto';
 import CadastroProjetosMestreDetalhe from './components/cadastroProjetosMestreDetalhe';
-
+import GoogleLoginTutorial from './components/loginGoogle';
+import FinalizacaoCadastroUsuario from './components/finalizacaoCadastroUsuario';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -65,6 +66,8 @@ ReactDOM.render(
       <Route path="/meusContatos" component={CadastroContatosMestreDetalhe} />
       <Route path="/projeto" component={CadastrarEditarProjeto} />
       <Route path="/meusProjetos" component={CadastroProjetosMestreDetalhe} />
+      <Route path="/loginGoogle" component={GoogleLoginTutorial} />
+      <Route path="/finalUsuario" component={FinalizacaoCadastroUsuario} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

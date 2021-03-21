@@ -1,281 +1,102 @@
-// import React, { Component } from 'react';
-// //import { useHistory } from 'react-router-dom';
-// import operacoes from '../services/UsuariosService.js';
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import operacoes from '../services/UsuariosService.js';
+import { Link } from 'react-router-dom';
 
-// export default function Login(props) {
-//   const history = useHistory();
-//   var nomeUsuario = '';
-//   var senha = '';
-//   var auth2 = null;
-//   const googleLoginBtn = useRef(null);
+export default function Login(props) {
+  const history = useHistory();
+  var nomeUsuario = '';
+  var senha = '';
 
-//   const setNomeUsuario = (event) => {
-//     nomeUsuario = event.target.value;
-//   };
-//   const setSenha = (event) => {
-//     senha = event.target.value;
-//   };
-
-//   const login = async () => {
-//     try {
-//       const retorno = await operacoes.login(nomeUsuario, senha);
-//       if (retorno.data) {
-//         sessionStorage.setItem('login', JSON.stringify(retorno.data[0]));
-//         history.push('/');
-//       }
-//     } catch (error) {
-//       alert('Usuário ou senha incorreto.');
-//     }
-//   };
-
-//   const prepareLoginButton = () => {
-//     console.log(googleLoginBtn);
-
-//     auth2.attachClickHandler(
-//       googleLoginBtn,
-//       {},
-//       (googleUser) => {
-//         let profile = googleUser.getBasicProfile();
-//         console.log('Token || ' + googleUser.getAuthResponse().id_token);
-//         console.log('ID: ' + profile.getId());
-//         console.log('Name: ' + profile.getName());
-//         console.log('Image URL: ' + profile.getImageUrl());
-//         console.log('Email: ' + profile.getEmail());
-//         //YOUR CODE HERE
-//       },
-//       (error) => {
-//         alert(JSON.stringify(error, undefined, 2));
-//       }
-//     );
-//   };
-
-//   const googleSDK = () => {
-//     window['googleSDKLoaded'] = () => {
-//       window['gapi'].load('auth2', () => {
-//         auth2 = window['gapi'].auth2.init({
-//           client_id:
-//             '1017028824525-86hhltm1ldcm3allr6g82mbsi0c383h4.apps.googleusercontent.com',
-//           cookiepolicy: 'single_host_origin',
-//           scope: 'profile email',
-//         });
-//         prepareLoginButton();
-//       });
-//     };
-
-//     (function (d, s, id) {
-//       var js,
-//         fjs = d.getElementsByTagName(s)[0];
-//       if (d.getElementById(id)) {
-//         return;
-//       }
-//       js = d.createElement(s);
-//       js.id = id;
-//       js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
-//       fjs.parentNode.insertBefore(js, fjs);
-//     })(document, 'script', 'google-jssdk');
-//   };
-
-//   googleSDK();
-
-//   return (
-//     <div id="login-page" className="row container">
-//       <div className="input-field col s12"></div>
-//       <div className="input-field col s3"></div>
-//       <div className="col s5 z-depth-4 card-panel">
-//         <form className="col s12">
-//           <div className="row">
-//             <div className="input-field col s12 center">
-//               <p className="center login-form-text">
-//                 Informe o login para o acesso
-//               </p>
-//             </div>
-//           </div>
-//           <div className="row margin">
-//             <div className="input-field col s11">
-//               <i className="mdi-social-person-outline prefix"></i>
-//               <input
-//                 id="username"
-//                 type="text"
-//                 onChange={setNomeUsuario}
-//               ></input>
-//               <label htmlFor="username" className="active">
-//                 Nome de usuário
-//               </label>
-//             </div>
-//           </div>
-//           <div className="row margin">
-//             <div className="input-field col s11">
-//               <i className="mdi-action-lock-outline prefix"></i>
-//               <input id="password" type="password" onChange={setSenha}></input>
-//               <label html="password" className="active">
-//                 senha
-//               </label>
-//             </div>
-//           </div>
-
-//           <div className="row">
-//             <div className="input-field col s12">
-//               <a
-//                 className="btn waves-effect waves-light col s12"
-//                 onClick={login}
-//               >
-//                 Login
-//               </a>
-//             </div>
-//           </div>
-
-//           <div className="row">
-//             <div className="input-field col s12">
-//               <a
-//                 className="btn waves-effect waves-light col s12"
-//                 onClick={googleSDK}
-//               >
-//                 start
-//               </a>
-//             </div>
-//           </div>
-
-//           <div className="row mt-5 mb-5">
-//             <div className="col-md-4 mt-2 m-auto ">
-//               <button
-//                 className="loginBtn loginBtn--google"
-//                 ref={googleLoginBtn}
-//               >
-//                 Login with Google
-//               </button>
-//             </div>
-//           </div>
-
-//           <div className="row">
-//             <div className="input-field col s6 m6 l6">
-//               <p className="margin medium-small">
-//                 <a href="page-register.html">
-//                   <Link to="/cadastro">Cadastrar novo usuário</Link>
-//                 </a>
-//               </p>
-//             </div>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-import React, { Component } from 'react';
-
-class GoogleLoginTutorial extends Component {
-  state = {
-    loginData: {
-      Token: '',
-    },
+  const setNomeUsuario = (event) => {
+    nomeUsuario = event.target.value;
+  };
+  const setSenha = (event) => {
+    senha = event.target.value;
   };
 
-  componentDidMount() {
-    this.googleSDK();
-  }
-
-  prepareLoginButton = () => {
-    this.auth2.attachClickHandler(
-      this.refs.googleLoginBtn,
-      {},
-      (googleUser) => {
-        let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
-
-        // profile.token = googleUser.getAuthResponse().id_token;
-        this.setState({
-          loginData: {
-            Token: googleUser.getAuthResponse().id_token,
-            ID: profile.getId(),
-            Name: profile.getName(),
-            Image: profile.getImageUrl(),
-            Email: profile.getEmail(),
-          },
-        });
-      },
-      (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+  const login = async () => {
+    try {
+      const retorno = await operacoes.login(nomeUsuario, senha);
+      if (retorno.data) {
+        sessionStorage.setItem('login', JSON.stringify(retorno.data[0]));
+        history.push('/');
       }
-    );
+    } catch (error) {
+      alert('Usuário ou senha incorreto.');
+    }
   };
 
-  googleSDK = () => {
-    window['googleSDKLoaded'] = () => {
-      window['gapi'].load('auth2', () => {
-        this.auth2 = window['gapi'].auth2.init({
-          client_id:
-            '764194037935-hkai71dhmgitqvsmv7alnj7ivcab3fvt.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin',
-          scope: 'profile email',
-        });
-        this.prepareLoginButton();
-      });
-    };
+  const google = () => {};
 
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'google-jssdk');
-  };
-
-  render() {
-    return (
-      <div className="row mt-5">
-        <div className="col-md-12">
-          <h2 className="text-left">Google Login Demo</h2>
-          <div className="card mt-3">
-            <div className="card-body">
-              {this.state.loginData.ID ? (
-                <p>
-                  <b>Response</b>
-                  <p>
-                    <b>ID:</b>
-                    {this.state.loginData.ID}
-                  </p>
-                  <p>
-                    <b>Name:</b>
-                    {this.state.loginData.Name}
-                  </p>
-                  <p>
-                    <b>Email:</b>
-                    {this.state.loginData.Email}
-                  </p>
-                  <p>
-                    <b>Image:</b>
-                    {this.state.loginData.Image}
-                  </p>
-                </p>
-              ) : null}
-
-              <div className="row mt-5 mb-5">
-                <div className="col-md-4 mt-2 m-auto ">
-                  <button
-                    className="loginBtn loginBtn--google"
-                    ref="googleLoginBtn"
-                  >
-                    Login with Google
-                  </button>
-                </div>
-              </div>
+  return (
+    <div id="login-page" className="row container">
+      <div className="input-field col s12"></div>
+      <div className="input-field col s3"></div>
+      <div className="col s5 z-depth-4 card-panel">
+        <form className="col s12">
+          <div className="row">
+            <div className="input-field col s12 center">
+              <p className="center login-form-text">
+                Informe o login para o acesso
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-}
+          <div className="row margin">
+            <div className="input-field col s11">
+              <i className="mdi-social-person-outline prefix"></i>
+              <input
+                id="username"
+                type="text"
+                onChange={setNomeUsuario}
+              ></input>
+              <label htmlFor="username" className="active">
+                Nome de usuário
+              </label>
+            </div>
+          </div>
+          <div className="row margin">
+            <div className="input-field col s11">
+              <i className="mdi-action-lock-outline prefix"></i>
+              <input id="password" type="password" onChange={setSenha}></input>
+              <label html="password" className="active">
+                senha
+              </label>
+            </div>
+          </div>
 
-export default GoogleLoginTutorial;
+          <div className="row">
+            <div className="input-field col s12">
+              <a
+                className="btn waves-effect waves-light col s12"
+                onClick={login}
+              >
+                Login
+              </a>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-field col s12">
+              <a className="btn waves-effect waves-light col s12">
+                <Link to="/loginGoogle">
+                  <span class="white-text">Login com Google</span>
+                </Link>
+              </a>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-field col s6 m6 l6">
+              <p className="margin medium-small">
+                <a href="page-register.html">
+                  <Link to="/cadastro">Cadastrar novo usuário</Link>
+                </a>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
