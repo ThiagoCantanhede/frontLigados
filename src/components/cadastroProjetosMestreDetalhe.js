@@ -81,30 +81,36 @@ export default function CadastroProjetosMestreDetalhe(props) {
           </div>
           <div className="col s5">
             <div className="collection">
-              {projetos.map((p, i) => (
-                <a
-                  key={i}
-                  className="collection-item"
-                  onClick={() => preencherObjetoContato(p)}
-                >
-                  <span
-                    class="new badge"
-                    data-badge-caption="Excluir"
-                    onClick={() => excluirProjeto(p)}
-                  ></span>
-                  <span
-                    class="new badge"
-                    data-badge-caption="Editar"
-                    onClick={() => visualizarProjeto(p)}
-                  ></span>
-                  <span
-                    class="new badge"
-                    data-badge-caption="PDF"
-                    onClick={() => exportarPDF(p)}
-                  ></span>
-                  {p.nome}
-                </a>
-              ))}
+              {projetos.length ? (
+                projetos.map((p, i) => (
+                  <a
+                    key={i}
+                    className="collection-item"
+                    onClick={() => preencherObjetoContato(p)}
+                  >
+                    <span
+                      class="new badge"
+                      data-badge-caption="Excluir"
+                      onClick={() => excluirProjeto(p)}
+                    ></span>
+                    <span
+                      class="new badge"
+                      data-badge-caption="Editar"
+                      onClick={() => visualizarProjeto(p)}
+                    ></span>
+                    <span
+                      class="new badge"
+                      data-badge-caption="PDF"
+                      onClick={() => exportarPDF(p)}
+                    ></span>
+                    {p.nome}
+                  </a>
+                ))
+              ) : (
+                <div className="input-field col s12 center">
+                  <p>Nenhum dado para exibir</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="col s5">

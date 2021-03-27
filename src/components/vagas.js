@@ -107,25 +107,31 @@ export default function ConsultarVagas(props) {
           </div>
         </div>
         <div className="row container col s12">
-          {vagas.map((v, i) => (
-            <div key={i} className="col s12 m4">
-              <div className="card blue-grey darken-1">
-                <div className="card-content white-text">
-                  <span className="card-title">{v.titulo}</span>
-                  <p>Código: {v.codigo}</p>
-                  <p>Descrição: {v.descricao}</p>
-                </div>
-                <div className="card-action">
-                  <a href="#" onClick={() => salvarCandidatura(v)}>
-                    candidatar-se
-                  </a>
-                  <a href="#" onClick={() => visualizarVaga(v)}>
-                    <Link to="/visualizarVaga">Visualizar vaga</Link>
-                  </a>
+          {vagas.length > 0 ? (
+            vagas.map((v, i) => (
+              <div key={i} className="col s12 m4">
+                <div className="card blue-grey darken-1">
+                  <div className="card-content white-text">
+                    <span className="card-title">{v.titulo}</span>
+                    <p>Código: {v.codigo}</p>
+                    <p>Descrição: {v.descricao}</p>
+                  </div>
+                  <div className="card-action">
+                    <a href="#" onClick={() => salvarCandidatura(v)}>
+                      candidatar-se
+                    </a>
+                    <a href="#" onClick={() => visualizarVaga(v)}>
+                      <Link to="/visualizarVaga">Visualizar vaga</Link>
+                    </a>
+                  </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="input-field col s12 center">
+              <p>Nenhum dado para exibir</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
     );

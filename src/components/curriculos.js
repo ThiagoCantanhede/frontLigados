@@ -36,19 +36,25 @@ export default function ConsultarCurriculos(props) {
     return (
       <div>
         <ul className="collection">
-          {curriculos.map((c, i) => (
-            <li key={i} className="collection-item avatar">
-              <span className="title">Currículo</span>
-              <p>Nome: {c.usuarioNome}</p>
-              <a
-                href="#!"
-                className="secondary-content"
-                onClick={() => abrirCurriculo(c)}
-              >
-                Visualizar currículo
-              </a>
-            </li>
-          ))}
+          {curriculos.length ? (
+            curriculos.map((c, i) => (
+              <li key={i} className="collection-item avatar">
+                <span className="title">Currículo</span>
+                <p>Nome: {c.usuarioNome}</p>
+                <a
+                  href="#!"
+                  className="secondary-content"
+                  onClick={() => abrirCurriculo(c)}
+                >
+                  Visualizar currículo
+                </a>
+              </li>
+            ))
+          ) : (
+            <div className="input-field col s12 center">
+              <p>Nenhum dado para exibir</p>
+            </div>
+          )}
         </ul>
         <div className="input-field col s1">
           <a className="waves-effect waves-light btn" onClick={retornar}>

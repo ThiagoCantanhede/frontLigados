@@ -37,16 +37,22 @@ export default function MinhasMensagens(props) {
     return (
       <div>
         <ul className="collection">
-          {mensagens.map((m) => (
-            <li className="collection-item avatar">
-              <span className="title">Assunto: {m.assunto}</span>
-              <p>Enviado por: {m.nomeAutor}</p>
-              <a href="#" onClick={() => visualizarMensagem(m)}>
-                <Link to="/visualizarMensagem">Ler mensagem</Link>
-              </a>
-              <div></div>
-            </li>
-          ))}
+          {mensagens.length ? (
+            mensagens.map((m) => (
+              <li className="collection-item avatar">
+                <span className="title">Assunto: {m.assunto}</span>
+                <p>Enviado por: {m.nomeAutor}</p>
+                <a href="#" onClick={() => visualizarMensagem(m)}>
+                  <Link to="/visualizarMensagem">Ler mensagem</Link>
+                </a>
+                <div></div>
+              </li>
+            ))
+          ) : (
+            <div className="input-field col s12 center">
+              <p>Nenhuma mensagem para exibir</p>
+            </div>
+          )}
         </ul>
         <div className="input-field col s1">
           <a className="waves-effect waves-light btn" onClick={retornar}>

@@ -40,19 +40,25 @@ export default function MeusArtigos(props) {
     return (
       <div>
         <ul className="collection">
-          {artigos.map((a) => (
-            <li className="collection-item avatar">
-              <span className="title">Título: {a.titulo}</span>
-              <p>Autor: {a.autorNome}</p>
-              <a href="#" onClick={() => visualizarArtigo(a)}>
-                <Link to="/visualizarEditarArtigo">Ler Artigo</Link>
-              </a>
-              <div></div>
-              <a href="#" onClick={() => excluirArtigo(a)}>
-                Excluir artigo
-              </a>
-            </li>
-          ))}
+          {artigos.length ? (
+            artigos.map((a) => (
+              <li className="collection-item avatar">
+                <span className="title">Título: {a.titulo}</span>
+                <p>Autor: {a.autorNome}</p>
+                <a href="#" onClick={() => visualizarArtigo(a)}>
+                  <Link to="/visualizarEditarArtigo">Ler Artigo</Link>
+                </a>
+                <div></div>
+                <a href="#" onClick={() => excluirArtigo(a)}>
+                  Excluir artigo
+                </a>
+              </li>
+            ))
+          ) : (
+            <div className="input-field col s12 center">
+              <p>Nenhum dado para exibir</p>
+            </div>
+          )}
         </ul>
 
         <div className="input-field col s1">
