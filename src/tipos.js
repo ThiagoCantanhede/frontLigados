@@ -5,4 +5,6 @@ export default class tipos {
   candidatura = 'candidatura';
   mensagem = 'mensagemEnviada';
   visualizacaoCurriculo = 'visualizacaoCurriculo';
+  curtidaCurriculo = 'curtidaCurriculo';
+  curtidaArtigo = 'curtidaArtigo';
 }

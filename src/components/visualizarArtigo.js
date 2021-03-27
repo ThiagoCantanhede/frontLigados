@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
 import { useHistory } from 'react-router-dom';
+import salvarAuditoria from '../auditoria.js';
+import tipos from '../tipos.js';
 
 export default function VisualizarArtigo(props) {
   var titulo = '';
@@ -27,6 +29,12 @@ export default function VisualizarArtigo(props) {
   };
   const retornar = () => {
     history.push('/consultarArtigos');
+  };
+
+  const curtir = async (id) => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(id, tipo.curtidaArtigo);
   };
 
   const montarArtigo = () => {
@@ -61,6 +69,14 @@ export default function VisualizarArtigo(props) {
             <div className="input-field col s3">
               <a className="waves-effect waves-light btn" onClick={exportarPDF}>
                 Exportar para PDF
+              </a>
+            </div>
+            <div className="input-field col s2">
+              <a
+                className="waves-effect waves-light btn"
+                onClick={curtir(artigoRecuperado.autorId)}
+              >
+                Curtir
               </a>
             </div>
             <div className="input-field col s1">

@@ -32,6 +32,7 @@ import CadastrarEditarProjeto from './components/cadastroProjeto';
 import CadastroProjetosMestreDetalhe from './components/cadastroProjetosMestreDetalhe';
 import GoogleLoginTutorial from './components/loginGoogle';
 import FinalizacaoCadastroUsuario from './components/finalizacaoCadastroUsuario';
+import Graficos from './components/graficos';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -68,6 +69,7 @@ ReactDOM.render(
       <Route path="/meusProjetos" component={CadastroProjetosMestreDetalhe} />
       <Route path="/loginGoogle" component={GoogleLoginTutorial} />
       <Route path="/finalUsuario" component={FinalizacaoCadastroUsuario} />
+      <Route path="/graficos" component={Graficos} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

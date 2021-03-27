@@ -45,6 +45,12 @@ export default function CadastroCurriculo(props) {
       doc.save('currículo.pdf');
     };
 
+    const curtir = async (id) => {
+      let tipo = new tipos();
+      let auditoria = new salvarAuditoria();
+      auditoria.salvarAuditoria(id, tipo.curtidaCurriculo);
+    };
+
     return (
       <div className="row container">
         <form className="col s12">
@@ -92,9 +98,17 @@ export default function CadastroCurriculo(props) {
               Enviar mensagem
             </a>
           </div>
-          <div className="input-field col s5">
+          <div className="input-field col s3">
             <a className="waves-effect waves-light btn" onClick={exportarPDF}>
               Exportar para PDF
+            </a>
+          </div>
+          <div className="input-field col s1">
+            <a
+              className="waves-effect waves-light btn"
+              onClick={curtir(candidatoId._id)}
+            >
+              curtir
             </a>
           </div>
         </form>

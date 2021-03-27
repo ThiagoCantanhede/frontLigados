@@ -3,7 +3,7 @@ import Chart from 'react-google-charts';
 import operacoesAuditoria from '../services/AuditoriaService.js';
 import tipos from '../tipos.js';
 
-export default function GraficoCurriculo(props) {
+export default function GraficoCurtidaCurriculo(props) {
   const [graficoComponente, montarComponente] = useState([]);
   const [dados, montarDatao] = useState([]);
   var data = [];
@@ -22,7 +22,7 @@ export default function GraficoCurriculo(props) {
   }, [dados]);
 
   const montarGrafico = async () => {
-    data.push(['Mês', 'Visualizações do currículo', { role: 'style' }]);
+    data.push(['Mês', 'Curtidas no currículo', { role: 'style' }]);
     const idUsuario = retornarIdUsuario();
 
     const dadosAuditoria = await operacoesAuditoria.retornarAcoesPorUsuario(
@@ -43,7 +43,7 @@ export default function GraficoCurriculo(props) {
     let tipo = new tipos();
 
     dadosAuditoria.data.map(async (da) => {
-      if (tipo.visualizacaoCurriculo === da.tipoAcao && da.anoAcao === ano) {
+      if (tipo.curtidaCurriculo === da.tipoAcao && da.anoAcao === ano) {
         if (da.mesAcao === '1') totJan++;
         if (da.mesAcao === '2') totFev++;
         if (da.mesAcao === '3') totMar++;

@@ -73,7 +73,7 @@ export default function CadastroCurriculo(props) {
 
   const abrirGrafico = () => {
     localStorage.removeItem('grafico');
-    history.push('/graficoCurriculo');
+    history.push('/graficos');
   };
 
   const exportarPDF = () => {
