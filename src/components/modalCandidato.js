@@ -35,6 +35,10 @@ export default function CadastroCurriculo(props) {
       history.push('/mensagem');
     };
 
+    const agendamentoEntrevista = () => {
+      history.push('/agendamentoEntrevista');
+    };
+
     const exportarPDF = () => {
       const doc = new jsPDF();
       doc.text('NOME: ' + retorno.data[0].usuarioNome, 10, 10);
@@ -96,6 +100,14 @@ export default function CadastroCurriculo(props) {
               onClick={chamarModalMensagem}
             >
               Enviar mensagem
+            </a>
+          </div>
+          <div className="input-field col s3">
+            <a
+              className="waves-effect waves-light btn "
+              onClick={agendamentoEntrevista}
+            >
+              Agendar entrevista
             </a>
           </div>
           <div className="input-field col s3">
