@@ -3,6 +3,7 @@ import operacoes from '../services/AgendamentoService.js';
 import { useHistory } from 'react-router-dom';
 import salvarAuditoria from '../auditoria.js';
 import tipos from '../tipos.js';
+import operacoesMensagem from '../services/MensagemService.js';
 
 export default function Agendamento(props) {
   const [data, setData] = useState('');
@@ -27,7 +28,38 @@ export default function Agendamento(props) {
 
     operacoes.create(agendamento);
     salvarNaAuditoria();
+    enviarMensagem();
     retornar();
+  };
+
+  const enviarMensagem = () => {
+    const destinatario = retornarIdNomeDestinatario();
+    const autor = retornarIdNomeUsuario();
+    var mensagem = {
+      destinatarioId: destinatario.idDestinatario,
+      nomeDestinatario: destinatario.nomeDestinatario,
+      autorId: autor.id,
+      nomeAutor: autor.nome,
+      assunto: 'Agendamento de entrevista',
+      mensagem: retornarMensagem(),
+    };
+    operacoesMensagem.create(mensagem);
+  };
+
+  const retornarMensagem = () => {
+    return `Entrevista agendada para dia ${data} às ${hora}: ${mensagem}  `;
+  };
+
+  const retornarIdNomeUsuario = () => {
+    let usuario = sessionStorage.getItem('login');
+    usuario = JSON.parse(usuario);
+    return { id: usuario._id, nome: usuario.nome };
+  };
+
+  const retornarIdNomeDestinatario = () => {
+    let candidato = localStorage.getItem('visualisandoCandidato');
+    candidato = JSON.parse(candidato);
+    return { idDestinatario: candidato._id, nomeDestinatario: candidato.nome };
   };
 
   const salvarNaAuditoria = async () => {
