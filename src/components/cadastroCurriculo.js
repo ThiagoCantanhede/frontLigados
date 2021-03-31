@@ -87,7 +87,7 @@ export default function CadastroCurriculo(props) {
   };
 
   const retornar = () => {
-    history.push('/');
+    history.push('/menuPessoal');
   };
 
   return (

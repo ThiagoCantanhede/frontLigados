@@ -34,6 +34,7 @@ import GoogleLoginTutorial from './components/loginGoogle';
 import FinalizacaoCadastroUsuario from './components/finalizacaoCadastroUsuario';
 import Graficos from './components/graficos';
 import Agendamento from './components/agendamentoEntrevista';
+import MenuPessoal from './components/menuPessoal';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -73,6 +74,7 @@ ReactDOM.render(
       <Route path="/finalUsuario" component={FinalizacaoCadastroUsuario} />
       <Route path="/graficos" component={Graficos} />
       <Route path="/agendamentoEntrevista" component={Agendamento} />
+      <Route path="/menuPessoal" component={MenuPessoal} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

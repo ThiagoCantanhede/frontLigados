@@ -58,7 +58,7 @@ export default function CadastroProjetosMestreDetalhe(props) {
   };
 
   const retornar = () => {
-    history.push('/');
+    history.push('/menuPessoal');
   };
 
   const montarCards = async () => {
