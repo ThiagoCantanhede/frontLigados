@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import operacoes from '../services/AgendamentoService.js';
 import { useHistory } from 'react-router-dom';
 import salvarAuditoria from '../auditoria.js';
+import tipos from '../tipos.js';
 
 export default function Agendamento(props) {
   const [data, setData] = useState('');
@@ -13,32 +14,40 @@ export default function Agendamento(props) {
 
   const salvarAgendamento = () => {
     console.log(hora);
-    console.log(data);
+    console.log(data.substring(0, 4));
     var agendamento = {
       recrutadorId: retornarIdRecrutador(),
-      candidatoId: 'idCandidato',
+      candidatoId: retornarIdCandidato(),
       horario: hora,
-      dia: '2',
-      mes: '2',
-      ano: '2021',
+      dia: data.substr(8, 2),
+      mes: data.substr(5, 2),
+      ano: data.substr(0, 4),
       mensagem: mensagem,
     };
 
     operacoes.create(agendamento);
-    //salvarNaAuditoria();
+    salvarNaAuditoria();
     retornar();
   };
 
-  // const salvarNaAuditoria = async () => {
-  //   let tipo = new tipos();
-  //   let auditoria = new salvarAuditoria();
-  //   auditoria.salvarAuditoria(id, tipo.cadastroCurriculo);
-  // };
+  const salvarNaAuditoria = async () => {
+    let tipo = new tipos();
+    let auditoria = new salvarAuditoria();
+    auditoria.salvarAuditoria(
+      retornarIdCandidato(),
+      tipo.agendamentoEntrevista
+    );
+  };
 
   const retornarIdRecrutador = () => {
     let usuario = sessionStorage.getItem('login');
     usuario = JSON.parse(usuario);
     return usuario._id;
+  };
+
+  const retornarIdCandidato = () => {
+    let idCandidato = localStorage.getItem('agendamento');
+    return idCandidato;
   };
 
   const handle = (event) => {
@@ -54,7 +63,7 @@ export default function Agendamento(props) {
   };
 
   const retornar = () => {
-    history.push('/');
+    history.push('/candidato');
   };
 
   return (

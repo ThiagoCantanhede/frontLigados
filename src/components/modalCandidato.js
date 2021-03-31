@@ -8,10 +8,16 @@ import { jsPDF } from 'jspdf';
 export default function CadastroCurriculo(props) {
   const history = useHistory();
   const [curriculoCandidato, montarCurriculo] = useState([]);
+  let candidatoId = null;
 
   useEffect(async () => {
     montarCurriculo(await curriculo());
   }, []);
+
+  const retornarCandidato = () => {
+    const auxcandidatoId = localStorage.getItem('visualisandoCandidato');
+    return JSON.parse(auxcandidatoId);
+  };
 
   const salvarNaAuditoria = async (id) => {
     let tipo = new tipos();
@@ -19,8 +25,7 @@ export default function CadastroCurriculo(props) {
     auditoria.salvarAuditoria(id, tipo.visualizacaoCurriculo);
   };
   const curriculo = async () => {
-    let candidatoId = localStorage.getItem('visualisandoCandidato');
-    candidatoId = JSON.parse(candidatoId);
+    candidatoId = retornarCandidato();
     const retorno = await operacoes.encontrarCurriculoPorUsuario(
       candidatoId._id
     );
@@ -36,6 +41,7 @@ export default function CadastroCurriculo(props) {
     };
 
     const agendamentoEntrevista = () => {
+      localStorage.setItem('agendamento', retornarCandidato()._id);
       history.push('/agendamentoEntrevista');
     };
 
@@ -49,10 +55,14 @@ export default function CadastroCurriculo(props) {
       doc.save('currículo.pdf');
     };
 
-    const curtir = async (id) => {
+    const curtir = async () => {
       let tipo = new tipos();
       let auditoria = new salvarAuditoria();
-      auditoria.salvarAuditoria(id, tipo.curtidaCurriculo);
+      auditoria.salvarAuditoria(retornarCandidato()._id, tipo.curtidaCurriculo);
+    };
+
+    const retornar = () => {
+      history.push('/minhasVagas');
     };
 
     return (
@@ -110,17 +120,19 @@ export default function CadastroCurriculo(props) {
               Agendar entrevista
             </a>
           </div>
-          <div className="input-field col s3">
+          <div className="input-field col s2">
             <a className="waves-effect waves-light btn" onClick={exportarPDF}>
               Exportar para PDF
             </a>
           </div>
-          <div className="input-field col s1">
-            <a
-              className="waves-effect waves-light btn"
-              onClick={curtir(candidatoId._id)}
-            >
-              curtir
+          <div className="input-field col s2">
+            <a className="waves-effect waves-light btn" onClick={curtir}>
+              Curtir
+            </a>
+          </div>
+          <div className="input-field col s2">
+            <a className="waves-effect waves-light btn" onClick={retornar}>
+              Fechar
             </a>
           </div>
         </form>

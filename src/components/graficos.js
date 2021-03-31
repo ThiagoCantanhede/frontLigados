@@ -4,7 +4,7 @@ import GraficoCurriculo from './graficosCurriculo.js';
 import GraficoCurtidaCurriculo from './graficoCurtidaCurriculo.js';
 import GraficoCurtidaArtigo from './graficoCurtidaArtigos.js';
 import GraficoCandidatura from './graficoCandidaturas.js';
-
+import GraficoEntrevistasAgendadas from './graficoEntrevistasAgendadas.js';
 export default function Graficos(props) {
   const history = useHistory();
 
@@ -19,11 +19,12 @@ export default function Graficos(props) {
         <GraficoCurtidaCurriculo />
         <GraficoCurtidaArtigo />
         <GraficoCandidatura />
+        <GraficoEntrevistasAgendadas />
       </div>
 
       <div className="input-field col s1">
         <a className="waves-effect waves-light btn" onClick={retornar}>
-          Fecha
+          Fechar
         </a>
       </div>
     </div>

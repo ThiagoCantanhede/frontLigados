@@ -7,4 +7,5 @@ export default class tipos {
   visualizacaoCurriculo = 'visualizacaoCurriculo';
   curtidaCurriculo = 'curtidaCurriculo';
   curtidaArtigo = 'curtidaArtigo';
+  agendamentoEntrevista = 'agendamentoEntrevista';
 }
