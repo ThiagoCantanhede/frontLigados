@@ -46,7 +46,7 @@ export default function CadastroArtigo(props) {
   };
 
   const retornar = () => {
-    history.push('/menuPessoal');
+    history.push('/gerenciamentoArtigos');
   };
 
   return (

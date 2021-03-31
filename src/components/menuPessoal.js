@@ -54,20 +54,8 @@ export default function MenuPessoal(props) {
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <span className="card-title">
-              <Link to="/escreverArtigo">
-                <span class="white-text">Escrever artigo</span>
-              </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="col s12 m4">
-        <div className="card blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">
-              <Link to="/meusArtigos">
-                <span class="white-text">Meus artigos</span>
+              <Link to="/gerenciamentoArtigos">
+                <span class="white-text">Artigos</span>
               </Link>
             </span>
           </div>

@@ -32,7 +32,7 @@ export default function MeusArtigos(props) {
   };
 
   const retornar = () => {
-    history.push('/menuPessoal');
+    history.push('/gerenciamentoArtigos');
   };
 
   const montarGrid = async () => {

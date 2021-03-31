@@ -35,6 +35,7 @@ import FinalizacaoCadastroUsuario from './components/finalizacaoCadastroUsuario'
 import Graficos from './components/graficos';
 import Agendamento from './components/agendamentoEntrevista';
 import MenuPessoal from './components/menuPessoal';
+import GerenciamentoArtigos from './components/gerenciamentoArtigos';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -75,6 +76,7 @@ ReactDOM.render(
       <Route path="/graficos" component={Graficos} />
       <Route path="/agendamentoEntrevista" component={Agendamento} />
       <Route path="/menuPessoal" component={MenuPessoal} />
+      <Route path="/gerenciamentoArtigos" component={GerenciamentoArtigos} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
