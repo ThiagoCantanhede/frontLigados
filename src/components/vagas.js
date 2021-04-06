@@ -5,6 +5,7 @@ import operacaoesCandidatoVaga from '../services/CandidatosVagasService.js';
 import { Link } from 'react-router-dom';
 import tipos from '../tipos.js';
 import salvarAuditoria from '../auditoria.js';
+import operacoesCurriculo from '../services/CurriculoService.js';
 
 export default function ConsultarVagas(props) {
   const history = useHistory();
@@ -39,7 +40,7 @@ export default function ConsultarVagas(props) {
 
   const salvarCandidatura = async (v) => {
     retornarIdUsuario();
-    if (!(await checarSeUsuarioJaSeCandidatouAVaga(v._id))) {
+    if (await checarSeOCandidatoPodeSeCandidatar(v._id)) {
       const candidatura = {
         vagaId: v._id,
         usuarioId: idCandidato,
@@ -51,9 +52,31 @@ export default function ConsultarVagas(props) {
       } catch (error) {
         console.log(error.message);
       }
-    } else {
-      alert('Candidatura não realizada. Você já se candidatou a vaga!');
     }
+  };
+
+  const checarSeOCandidatoPodeSeCandidatar = async (idVaga) => {
+    let retornoChecagem = true;
+    let retorno = (await checarSeCandidatoCadastrouOCurriculo())
+      ? true
+      : alert('Candidatura não realizada. Você não cadastrou seu currículo!');
+    if (retorno) {
+      retorno = await checarSeUsuarioJaSeCandidatouAVaga(idVaga);
+      if (retorno) {
+        alert('Candidatura não realizada. Você já se candidatou a vaga!');
+        retornoChecagem = false;
+      }
+    } else {
+      retornoChecagem = false;
+    }
+    return retornoChecagem;
+  };
+
+  const checarSeCandidatoCadastrouOCurriculo = async () => {
+    const retorno = await operacoesCurriculo.encontrarCurriculoPorUsuario(
+      idCandidato
+    );
+    return retorno.data[0] ? true : false;
   };
 
   const retornarIdUsuario = () => {
