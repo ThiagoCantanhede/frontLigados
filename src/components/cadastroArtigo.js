@@ -27,9 +27,20 @@ export default function CadastroArtigo(props) {
       autorId: id,
       autorNome: nome,
     };
-    operacoes.create(artigo);
-    salvarNaAuditoria();
-    retornar();
+
+    if (validarPreenchimento(artigo)) {
+      operacoes.create(artigo);
+      salvarNaAuditoria();
+      retornar();
+    } else {
+      alert(
+        'Para salvar, é necessário informar todos os dados do artigo. Verifique!'
+      );
+    }
+  };
+
+  const validarPreenchimento = (artigo) => {
+    return artigo.titulo && artigo.descricao && artigo.data ? true : false;
   };
 
   const salvarNaAuditoria = async () => {

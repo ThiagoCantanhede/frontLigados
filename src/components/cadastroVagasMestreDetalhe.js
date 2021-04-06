@@ -77,7 +77,7 @@ export default function CadastroVagasMestreDetalhe(props) {
   };
 
   const retornar = () => {
-    history.push('/menuPessoal');
+    history.push('/');
   };
 
   const montarCards = async () => {

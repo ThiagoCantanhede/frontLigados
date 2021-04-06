@@ -47,6 +47,23 @@ export default function App(props) {
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <span className="card-title">
+              <Link to="/minhasVagas">
+                <span class="white-text">Cadastro de vagas</span>
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: retornarTipoUsuario() === 'Recrutador' ? 'block' : 'none',
+        }}
+        className="col s12 m4"
+      >
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <span className="card-title">
               <Link to="/consultarCurriculos">
                 <span class="white-text">Listagem de currículos</span>
               </Link>

@@ -27,11 +27,25 @@ export default function CadastroCurriculo(props) {
       usuarioNome: nome,
     };
 
-    idCurriculo
-      ? operacoes.update(idCurriculo, curriculo)
-      : operacoes.create(curriculo);
-    salvarNaAuditoria();
-    retornar();
+    if (validarPreenchimento(curriculo)) {
+      idCurriculo
+        ? operacoes.update(idCurriculo, curriculo)
+        : operacoes.create(curriculo);
+      salvarNaAuditoria();
+      retornar();
+    } else {
+      alert(
+        'Para salvar, é necessário informar todos os dados do currículo. Verifique!'
+      );
+    }
+  };
+
+  const validarPreenchimento = (curriculo) => {
+    return curriculo.formacao &&
+      curriculo.competencias &&
+      curriculo.experienciaProfissional
+      ? true
+      : false;
   };
 
   const salvarNaAuditoria = async () => {

@@ -41,11 +41,20 @@ export default function CadastrarEditarContato(props) {
       telefone: telefone,
       usuarioId: retornarIdUsuario(),
     };
+    if (validarPreenchimento(lContato)) {
+      contato
+        ? operacoes.update(contato._id, lContato)
+        : operacoes.create(lContato);
+      history.push('/meusContatos');
+    } else {
+      alert(
+        'Para salvar, é necessário informar todos os dados do contato. Verifique!'
+      );
+    }
+  };
 
-    contato
-      ? operacoes.update(contato._id, lContato)
-      : operacoes.create(lContato);
-    history.push('/meusContatos');
+  const validarPreenchimento = (contato) => {
+    return contato.nome && contato.email && contato.telefone ? true : false;
   };
 
   const retornarIdUsuario = () => {

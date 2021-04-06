@@ -43,12 +43,32 @@ export default function CadastroVaga(props) {
       descricao: descricao,
       rendimentos: rendimentos,
       beneficios: beneficios,
-      dataLimiteCandidatura: dataLimite,
       dataPublicacao: Date.now(),
       usuarioId: retornarIdUsuario(),
     };
-    operacoes.create(vaga);
-    salvarNaAuditoria();
+
+    if (validarPreenchimento(vaga)) {
+      operacoes.create(vaga);
+      salvarNaAuditoria();
+      history.push('/minhasVagas');
+    } else {
+      alert(
+        'Para salvar, é necessário informar todos os dados da vaga. Verifique!'
+      );
+    }
+  };
+
+  const validarPreenchimento = (vaga) => {
+    return vaga.titulo &&
+      vaga.competencias &&
+      vaga.descricao &&
+      vaga.rendimentos &&
+      vaga.beneficios
+      ? true
+      : false;
+  };
+
+  const cancelar = () => {
     history.push('/minhasVagas');
   };
 
@@ -130,20 +150,14 @@ export default function CadastroVaga(props) {
           </div>
 
           <div className="input-field col s4"></div>
-          <div className="input-field col s8">
-            <input
-              id="data"
-              type="text"
-              onChange={setDataLimite}
-              className="validate"
-            ></input>
-            <label className="active">Data limite de candidatura</label>
-          </div>
-
-          <div className="input-field col s4"></div>
-          <div className="input-field col s8">
+          <div className="input-field col s2">
             <a className="waves-effect waves-light btn" onClick={salvarVaga}>
               Salvar
+            </a>
+          </div>
+          <div className="input-field col s4">
+            <a className="waves-effect waves-light btn" onClick={cancelar}>
+              Cancelar
             </a>
           </div>
         </div>

@@ -42,10 +42,20 @@ export default function CadastrarEditarProjeto(props) {
       usuarioId: retornarIdUsuario(),
     };
 
-    projeto
-      ? operacoes.update(projeto._id, lProjeto)
-      : operacoes.create(lProjeto);
-    history.push('/meusProjetos');
+    if (validarPreenchimento(lProjeto)) {
+      projeto
+        ? operacoes.update(projeto._id, lProjeto)
+        : operacoes.create(lProjeto);
+      history.push('/meusProjetos');
+    } else {
+      alert(
+        'Para salvar, é necessário informar todos os dados do projeto. Verifique!'
+      );
+    }
+  };
+
+  const validarPreenchimento = (projeto) => {
+    return projeto.nome && projeto.descricao && projeto.link ? true : false;
   };
 
   const retornarIdUsuario = () => {
