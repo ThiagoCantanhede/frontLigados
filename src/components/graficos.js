@@ -9,7 +9,7 @@ export default function Graficos(props) {
   const history = useHistory();
 
   const retornar = () => {
-    history.push('/curriculo');
+    history.push('/menuPessoal');
   };
 
   return (

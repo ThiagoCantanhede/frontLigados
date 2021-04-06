@@ -85,11 +85,6 @@ export default function CadastroCurriculo(props) {
     }
   };
 
-  const abrirGrafico = () => {
-    localStorage.removeItem('grafico');
-    history.push('/graficos');
-  };
-
   const exportarPDF = () => {
     const doc = new jsPDF();
     doc.text('NOME: ' + nome, 10, 10);
@@ -154,11 +149,7 @@ export default function CadastroCurriculo(props) {
             Exportar para PDF
           </a>
         </div>
-        <div className="input-field col s2">
-          <a className="waves-effect waves-light btn" onClick={abrirGrafico}>
-            Exibir estatística
-          </a>
-        </div>
+
         <div className="input-field col s1">
           <a className="waves-effect waves-light btn" onClick={retornar}>
             Cancelar
