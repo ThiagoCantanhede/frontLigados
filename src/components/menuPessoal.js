@@ -21,7 +21,12 @@ export default function MenuPessoal(props) {
 
   return (
     <div className="row container">
-      <div className="col s12 m4">
+      <div
+        style={{
+          display: retornarTipoUsuario() != 'Recrutador' ? 'block' : 'none',
+        }}
+        className="col s12 m4"
+      >
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <span className="card-title">
@@ -81,7 +86,12 @@ export default function MenuPessoal(props) {
         </div>
       </div>
 
-      <div className="col s12 m4">
+      <div
+        style={{
+          display: retornarTipoUsuario() != 'Recrutador' ? 'block' : 'none',
+        }}
+        className="col s12 m4"
+      >
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <span className="card-title">

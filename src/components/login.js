@@ -1,33 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/UsuariosService.js';
 import { Link } from 'react-router-dom';
 
 export default function Login(props) {
   const history = useHistory();
-  var nomeUsuario = '';
-  var senha = '';
+  const [carregando, alterarCarregando] = useState(false);
+  const [nomeUsuario, preencheNome] = useState('');
+  const [senha, preencheSenha] = useState('');
 
   const setNomeUsuario = (event) => {
-    nomeUsuario = event.target.value;
+    preencheNome(event.target.value);
   };
   const setSenha = (event) => {
-    senha = event.target.value;
+    preencheSenha(event.target.value);
   };
+
+  useEffect(() => {}, [carregando]);
 
   const login = async () => {
     try {
+      alterarCarregando(true);
       const retorno = await operacoes.login(nomeUsuario, senha);
       if (retorno.data) {
         sessionStorage.setItem('login', JSON.stringify(retorno.data[0]));
+
         history.push('/');
       }
     } catch (error) {
       alert('Usuário ou senha incorreto.');
+      alterarCarregando(false);
     }
   };
-
-  const google = () => {};
 
   return (
     <div id="login-page" className="row container">
@@ -55,6 +59,7 @@ export default function Login(props) {
               </label>
             </div>
           </div>
+
           <div className="row margin">
             <div className="input-field col s11">
               <i className="mdi-action-lock-outline prefix"></i>
@@ -63,6 +68,14 @@ export default function Login(props) {
                 senha
               </label>
             </div>
+          </div>
+          <div
+            style={{
+              display: carregando === true ? 'block' : 'none',
+            }}
+            class="progress"
+          >
+            <div class="indeterminate"></div>
           </div>
 
           <div className="row">
