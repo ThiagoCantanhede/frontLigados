@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import operacoes from '../services/ArtigoService.js';
-import { Link } from 'react-router-dom';
 
 export default function MeusArtigos(props) {
   const history = useHistory();
@@ -24,6 +23,7 @@ export default function MeusArtigos(props) {
 
   const visualizarArtigo = (artigo) => {
     localStorage.setItem('visualisandoArtigo', JSON.stringify(artigo));
+    history.push('/visualizarEditarArtigo');
   };
 
   const excluirArtigo = (artigo) => {
@@ -41,12 +41,12 @@ export default function MeusArtigos(props) {
       <div>
         <ul className="collection">
           {artigos.length ? (
-            artigos.map((a) => (
-              <li className="collection-item avatar">
+            artigos.map((a, index) => (
+              <li key={index} className="collection-item avatar">
                 <span className="title">Título: {a.titulo}</span>
                 <p>Autor: {a.autorNome}</p>
                 <a href="#" onClick={() => visualizarArtigo(a)}>
-                  <Link to="/visualizarEditarArtigo">Ler Artigo</Link>
+                  Ler Artigo
                 </a>
                 <div></div>
                 <a href="#" onClick={() => excluirArtigo(a)}>

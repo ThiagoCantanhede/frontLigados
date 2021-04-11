@@ -73,9 +73,9 @@ export default function Login(props) {
             style={{
               display: carregando === true ? 'block' : 'none',
             }}
-            class="progress"
+            className="progress"
           >
-            <div class="indeterminate"></div>
+            <div className="indeterminate"></div>
           </div>
 
           <div className="row">
@@ -93,7 +93,7 @@ export default function Login(props) {
             <div className="input-field col s12">
               <a className="btn waves-effect waves-light col s12">
                 <Link to="/loginGoogle">
-                  <span class="white-text">Login com Google</span>
+                  <span className="white-text">Login com Google</span>
                 </Link>
               </a>
             </div>

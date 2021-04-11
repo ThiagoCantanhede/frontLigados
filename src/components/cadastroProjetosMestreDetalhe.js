@@ -73,7 +73,7 @@ export default function CadastroProjetosMestreDetalhe(props) {
           </div>
           <div className="col s1">
             <a
-              class="btn-floating btn-large waves-effect waves-light"
+              className="btn-floating btn-large waves-effect waves-light"
               onClick={() => novoProjeto()}
             >
               +
@@ -89,17 +89,17 @@ export default function CadastroProjetosMestreDetalhe(props) {
                     onClick={() => preencherObjetoContato(p)}
                   >
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="Excluir"
                       onClick={() => excluirProjeto(p)}
                     ></span>
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="Editar"
                       onClick={() => visualizarProjeto(p)}
                     ></span>
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="PDF"
                       onClick={() => exportarPDF(p)}
                     ></span>

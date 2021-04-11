@@ -18,6 +18,7 @@ export default function ConsultarArtigos(props) {
 
   const visualizarArtigo = (artigo) => {
     localStorage.setItem('visualisandoArtigo', JSON.stringify(artigo));
+    history.push('/visualizarArtigo');
   };
 
   const retornar = () => {
@@ -30,12 +31,12 @@ export default function ConsultarArtigos(props) {
       <div>
         <ul className="collection">
           {artigos.length ? (
-            artigos.map((a) => (
-              <li className="collection-item avatar">
+            artigos.map((a, index) => (
+              <li key={index} className="collection-item avatar">
                 <span className="title">Título: {a.titulo}</span>
                 <p>Autor: {a.autorNome}</p>
                 <a href="#" onClick={() => visualizarArtigo(a)}>
-                  <Link to="/visualizarArtigo">Ler Artigo</Link>
+                  Ler Artigo
                 </a>
               </li>
             ))

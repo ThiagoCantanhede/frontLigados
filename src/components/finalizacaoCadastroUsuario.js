@@ -54,7 +54,7 @@ export default function FinalizacaoCadastroUsuario(props) {
             <div className="input-field col s12"></div>
             <div className="input-field col s4"></div>
             <div className="input-field col s8">
-              <span class="red-text">
+              <span className="red-text">
                 Informe o tipo do usuário para finalizar o cadastro
               </span>
             </div>

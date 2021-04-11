@@ -67,20 +67,26 @@ export default function VisualizarArtigo(props) {
               Descrição
             </label>
             <div className="input-field col s3">
-              <a className="waves-effect waves-light btn" onClick={exportarPDF}>
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => exportarPDF()}
+              >
                 Exportar para PDF
               </a>
             </div>
             <div className="input-field col s2">
               <a
                 className="waves-effect waves-light btn"
-                onClick={curtir(artigoRecuperado.autorId)}
+                onClick={() => curtir(artigoRecuperado.autorId)}
               >
                 Curtir
               </a>
             </div>
             <div className="input-field col s1">
-              <a className="waves-effect waves-light btn" onClick={retornar}>
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => retornar()}
+              >
                 Fechar
               </a>
             </div>

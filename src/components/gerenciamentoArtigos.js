@@ -26,7 +26,7 @@ export default function GerenciamentoArtigos(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/escreverArtigo">
-                <span class="white-text">Escrever artigo</span>
+                <span className="white-text">Escrever artigo</span>
               </Link>
             </span>
           </div>
@@ -38,7 +38,7 @@ export default function GerenciamentoArtigos(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/meusArtigos">
-                <span class="white-text">Meus artigos escritos</span>
+                <span className="white-text">Meus artigos escritos</span>
               </Link>
             </span>
           </div>
@@ -50,7 +50,7 @@ export default function GerenciamentoArtigos(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/menuPessoal">
-                <span class="white-text">Voltar</span>
+                <span className="white-text">Voltar</span>
               </Link>
             </span>
           </div>

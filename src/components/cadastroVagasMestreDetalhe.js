@@ -92,7 +92,7 @@ export default function CadastroVagasMestreDetalhe(props) {
           </div>
           <div className="col s1">
             <a
-              class="btn-floating btn-large waves-effect waves-light"
+              className="btn-floating btn-large waves-effect waves-light"
               onClick={() => novaVaga()}
             >
               +
@@ -108,17 +108,17 @@ export default function CadastroVagasMestreDetalhe(props) {
                     onClick={() => preencherObjetoVaga(v)}
                   >
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="Excluir"
                       onClick={() => excluirVaga(v)}
                     ></span>
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="Editar"
                       onClick={() => visualizarVaga(v)}
                     ></span>
                     <span
-                      class="new badge"
+                      className="new badge"
                       data-badge-caption="PDF"
                       onClick={() => exportarPDF(v.vaga)}
                     ></span>

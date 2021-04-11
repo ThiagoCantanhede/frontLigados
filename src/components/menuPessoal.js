@@ -31,7 +31,9 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/curriculo">
-                <span class="white-text">Cadastrar / Editar meu currículo</span>
+                <span className="white-text">
+                  Cadastrar / Editar meu currículo
+                </span>
               </Link>
             </span>
           </div>
@@ -43,7 +45,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/gerenciamentoArtigos">
-                <span class="white-text">Artigos</span>
+                <span className="white-text">Artigos</span>
               </Link>
             </span>
           </div>
@@ -55,7 +57,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/minhasMensagens">
-                <span class="white-text">Caixa de entrada</span>
+                <span className="white-text">Caixa de entrada</span>
               </Link>
             </span>
           </div>
@@ -67,7 +69,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/meusContatos">
-                <span class="white-text">Cadastro de contatos</span>
+                <span className="white-text">Cadastro de contatos</span>
               </Link>
             </span>
           </div>
@@ -79,7 +81,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/meusProjetos">
-                <span class="white-text">Cadastro de projetos</span>
+                <span className="white-text">Cadastro de projetos</span>
               </Link>
             </span>
           </div>
@@ -96,7 +98,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/graficos">
-                <span class="white-text">Estatísticas pessoais</span>
+                <span className="white-text">Estatísticas pessoais</span>
               </Link>
             </span>
           </div>
@@ -108,7 +110,7 @@ export default function MenuPessoal(props) {
           <div className="card-content white-text">
             <span className="card-title">
               <Link to="/">
-                <span class="white-text">Tela inicial</span>
+                <span className="white-text">Tela inicial</span>
               </Link>
             </span>
           </div>

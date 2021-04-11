@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
+import { useHistory } from 'react-router-dom';
 
 export default function VisualizarVaga(props) {
   const [vaga, setVaga] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     montarVaga();
@@ -22,6 +24,10 @@ export default function VisualizarVaga(props) {
     doc.text('RENDIMENTOS: ' + vaga.rendimentos, 10, 40);
     doc.text('BENEFÍCIOS: ' + vaga.beneficios, 10, 50);
     doc.save('vaga.pdf');
+  };
+
+  const retornar = () => {
+    history.push('/consultarVagas');
   };
 
   return (
@@ -87,9 +93,16 @@ export default function VisualizarVaga(props) {
             <label className="active" htmlFor="Beneficios">
               Beneficios
             </label>
-            <a className="waves-effect waves-light btn" onClick={exportarPDF}>
-              Exportar para PDF
-            </a>
+            <div className="input-field col s3">
+              <a className="waves-effect waves-light btn" onClick={exportarPDF}>
+                Exportar para PDF
+              </a>
+            </div>
+            <div className="input-field col s1">
+              <a className="waves-effect waves-light btn" onClick={retornar}>
+                Fechar
+              </a>
+            </div>
           </div>
         </div>
       </form>

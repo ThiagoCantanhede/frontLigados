@@ -39,6 +39,9 @@ export default function CadastroUsuario(props) {
     operacoes.create(usuario);
     history.push('/');
   };
+  const retornar = () => {
+    history.push('/login');
+  };
   return (
     <div className="row container">
       <form className="col s12">
@@ -107,11 +110,21 @@ export default function CadastroUsuario(props) {
               Senha
             </label>
           </div>
-          <div className="input-field col s4"></div>
-          <div className="input-field col s8">
-            <a className="waves-effect waves-light btn" onClick={salvarUsuario}>
-              Salvar
-            </a>
+          <div>
+            <div className="input-field col s4"></div>
+            <div className="input-field col s2">
+              <a
+                className="waves-effect waves-light btn"
+                onClick={salvarUsuario}
+              >
+                Salvar
+              </a>
+            </div>
+            <div className="input-field col s4">
+              <a className="waves-effect waves-light btn" onClick={retornar}>
+                Cancelar
+              </a>
+            </div>
           </div>
         </div>
       </form>

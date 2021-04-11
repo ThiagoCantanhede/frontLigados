@@ -31,7 +31,7 @@ export default function VisualizarEditarArtigo(props) {
     artigoRecuperado.titulo = titulo;
     artigoRecuperado.descricao = descricao;
     operacoes.update(artigoRecuperado._id, artigoRecuperado);
-    history.push('/');
+    history.push('/meusArtigos');
   };
   // const montarArtigo = () => {
   return (
@@ -76,5 +76,3 @@ export default function VisualizarEditarArtigo(props) {
     </div>
   );
 }
-//  return <div className="row container">{artigo}</div>;
-//}

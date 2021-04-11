@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import operacoes from '../services/UsuariosService.js';
 
-class GoogleLoginTutorial extends Component {
+class GoogleLogin extends Component {
   state = {
     loginData: {
       Token: '',
@@ -154,4 +154,4 @@ class GoogleLoginTutorial extends Component {
   }
 }
 
-export default GoogleLoginTutorial;
+export default GoogleLogin;

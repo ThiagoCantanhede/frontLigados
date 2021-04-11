@@ -30,7 +30,7 @@ import CadastroContatosMestreDetalhe from './components/cadastroContatosMestreDe
 import CadastrarEditarContato from './components/cadastroContato';
 import CadastrarEditarProjeto from './components/cadastroProjeto';
 import CadastroProjetosMestreDetalhe from './components/cadastroProjetosMestreDetalhe';
-import GoogleLoginTutorial from './components/loginGoogle';
+import GoogleLogin from './components/loginGoogle';
 import FinalizacaoCadastroUsuario from './components/finalizacaoCadastroUsuario';
 import Graficos from './components/graficos';
 import Agendamento from './components/agendamentoEntrevista';
@@ -71,7 +71,7 @@ ReactDOM.render(
       <Route path="/meusContatos" component={CadastroContatosMestreDetalhe} />
       <Route path="/projeto" component={CadastrarEditarProjeto} />
       <Route path="/meusProjetos" component={CadastroProjetosMestreDetalhe} />
-      <Route path="/loginGoogle" component={GoogleLoginTutorial} />
+      <Route path="/loginGoogle" component={GoogleLogin} />
       <Route path="/finalUsuario" component={FinalizacaoCadastroUsuario} />
       <Route path="/graficos" component={Graficos} />
       <Route path="/agendamentoEntrevista" component={Agendamento} />
